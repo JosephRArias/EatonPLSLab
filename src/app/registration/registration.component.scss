@@ -1,0 +1,118 @@
+.page-block {
+  min-height: 100vh;
+}
+.sidebar-footer {
+  margin-top: 25%;
+}
+.sidebar-footer {
+   a {
+      color: #fff;
+    }
+}
+
+.text-center {
+  text-align: center;
+}
+
+.logo {
+  max-width: 220px;
+  margin: auto;
+  width: 100%;
+  display: block;
+}
+
+.left-block {
+  color: #fff;
+  background: url(https://svgshare.com/i/8PV.svg), linear-gradient(135deg, #127cbf 0%, #094d9c 100%);
+  padding: 7% 0;
+}
+
+.right-block {
+  padding: 25px;
+  h4 {
+    margin: 0 0 10px;
+    font-size: 20px;
+    color: #4da3d4;
+  }
+  p {
+    margin: 0;
+    font-size: 14px;
+  }
+}
+
+.badge-logo {
+  width: 60px;
+  margin: 0 auto 10px;
+  display: block;
+}
+
+.form-group {
+  mat-form-field {
+    max-width: 45%;
+    margin-left: 3%;
+  }
+}
+
+.button {
+  text-align: right;
+}
+
+.form-field-set {
+  padding-top: 30px;
+ 
+}
+
+.already-have-account {
+  margin-top: 20px;
+  .links {
+    cursor: pointer;
+    text-decoration: underline;
+    margin-left: 10px;
+  }
+}
+
+.links {
+  color: #4da3d4;
+}
+
+.links:visited {
+  color: #4da3d4;
+}
+.resent-code{
+  color: #4da3d4;
+  margin-left: 20px;
+}
+.resent-code:visited{
+  color: #4da3d4;
+}
+
+@media (max-width:767px) {
+  .left-block {
+    display: none;
+  }
+}
+
+@media (max-width:599px) {
+  .right-block {
+    padding: 15px;
+  }
+  .form-field-set {
+    min-height: inherit;
+    padding: 10px 0 20px;
+  }
+  .already-have-account {
+    margin-top: 0;
+  }
+  .form-group {
+    mat-icon {
+      display: none;
+    }
+    mat-form-field {
+      max-width: 100%;
+      margin-left: 0%;
+    }
+  }
+  mat-form-field {
+    width: 100%;
+  }
+}

@@ -1,0 +1,120 @@
+<div class="ml-5 mr-5 mt-5">
+    <h1>Información General</h1>
+    <div class="row">
+        <div class="col-md-3">
+            <div class="card-counter primary">
+                <i class="fa fa-database"></i>
+                <span class="count-numbers">Request Pendientes</span>
+                <span class="count-name">21</span>
+            </div>
+        </div>
+
+        <div class="col-md-3">
+            <div class="card-counter danger">
+                <i class="fa fa-cogs"></i>
+                <span class="count-numbers">Request en Progreso</span>
+                <span class="count-name">04</span>
+            </div>
+        </div>
+
+        <div class="col-md-3">
+            <div class="card-counter success">
+                <i class="fa fa-check-circle"></i>
+                <span class="count-numbers">Request Completados</span>
+                <span class="count-name">12</span>
+            </div>
+        </div>
+
+        <div class="col-md-3">
+            <div class="card-counter info">
+                <i class="fa fa-clock"></i>
+                <span class="count-numbers">{{ date }}</span>
+                <span class="count-name">{{dateTxt}}</span>
+            </div>
+        </div>
+    </div>
+
+    <hr>
+
+    <div class="mt-2 mb-2 icon-btn">
+
+        <button class="btn-full {{item.color}}" *ngFor="let item of actions" [hidden]="!item.user.includes(userType)" (click)="gotoPage(item.action)">
+            <span class="btn-gradient ">
+                <i class="fa fa-{{item.icon}}"></i>
+            </span>
+            <span class="btn-text ">{{item.name}}</span>
+        </button>
+
+    </div>
+</div>
+
+<div class="ml-5 mr-5 mt-5 ">
+
+    <br><br>
+    <hr>
+    <h2>Últimos Requests</h2>
+    <table class="table ">
+        <thead class="thead-dark ">
+            <tr>
+                <th scope="col ">#</th>
+                <th scope="col ">Request</th>
+                <th scope="col ">Requester</th>
+                <th scope="col ">Date</th>
+                <th scope="col ">Tests</th>
+                <th scope="col ">Proposito</th>
+                <th scope="col ">Prioridad</th>
+                <th scope="col ">Especificaciones</th>
+                <th scope="col ">Asignados</th>
+                <th scope="col ">Status</th>
+                <th scope="col ">Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <th scope="row ">1</th>
+                <td>Jacob</td>
+                <td>Thornton</td>
+                <td>@fat</td>
+                <td>Jacob</td>
+                <td>Thornton</td>
+                <td>@fat</td>
+                <td>Jacob</td>
+                <td>Jacob</td>
+                <td>Thornton</td>
+                <td>
+                    <button class="btn btn-info btn-sm"><i class="fa fa-eye"></i></button>
+                </td>
+            </tr>
+            <tr>
+                <th scope="row ">2</th>
+                <td>Jacob</td>
+                <td>Thornton</td>
+                <td>@fat</td>
+                <td>Jacob</td>
+                <td>Thornton</td>
+                <td>@fat</td>
+                <td>Jacob</td>
+                <td>Jacob</td>
+                <td>Thornton</td>
+                <td>
+                    <button class="btn btn-info btn-sm"><i class="fa fa-eye"></i></button>
+                </td>
+            </tr>
+            <tr>
+                <th scope="row ">3</th>
+                <td>Jacob</td>
+                <td>Thornton</td>
+                <td>@fat</td>
+                <td>Jacob</td>
+                <td>Thornton</td>
+                <td>@fat</td>
+                <td>Jacob</td>
+                <td>Jacob</td>
+                <td>Thornton</td>
+                <td>
+                    <button class="btn btn-info btn-sm"><i class="fa fa-eye"></i></button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>

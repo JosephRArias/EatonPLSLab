@@ -1,0 +1,119 @@
+.card-counter {
+    box-shadow: 2px 2px 10px #DADADA;
+    margin: 5px;
+    padding: 20px 10px;
+    background-color: #fff;
+    height: 100px;
+    border-radius: 5px;
+    transition: .3s linear all;
+    min-height: 200px;
+}
+
+.card-counter i {
+    bottom: 15px;
+    position: absolute;
+}
+
+.card-counter:hover {
+    box-shadow: 4px 4px 20px #DADADA;
+    transition: .3s linear all;
+}
+
+.card-counter.primary {
+    background-image: -webkit-linear-gradient(-45deg, #006ec7 0%, #84BCDA 100%);
+    color: #FFF;
+}
+
+.card-counter.danger {
+    background-image: -webkit-linear-gradient(-45deg, #F37748 0%, #D56062 100%);
+    color: #FFF;
+}
+
+.card-counter.success {
+    background-image: -webkit-linear-gradient(-45deg, #11998e 0%, #1ec105 100%);
+    color: #FFF;
+}
+
+.card-counter.info {
+    background-image: -webkit-linear-gradient(-45deg, #f37749 0%, #fff200 100%);
+    color: #FFF;
+}
+
+.card-counter i {
+    font-size: 6em;
+    opacity: 0.1;
+}
+
+.card-counter .count-numbers {
+    position: absolute;
+    right: 35px;
+    top: 20px;
+    font-size: 1.8em;
+    display: block;
+}
+
+.card-counter .count-name {
+    position: absolute;
+    right: 35px;
+    top: 65px;
+    display: block;
+}
+
+.count-name {
+    font-size: 40px;
+    font-style: normal;
+    font-weight: 500;
+    font-weight: bold;
+}
+
+.icon-btn {
+    background: #f5f5f5;
+    float: left;
+}
+
+.icon-btn button {
+    float: left;
+    margin: 10px;
+}
+
+.btn-gradient {
+    width: 30%;
+    position: relative;
+    display: inline-block;
+    left: -55px;
+    background: rgba(0, 0, 0, 0.15);
+    border-top-right-radius: 60px;
+    padding: 8px 24px 8px 16px;
+    box-shadow: 2px 0px 0px 0px rgba(78, 72, 72, 0.4);
+}
+
+.btn-full {
+    font-size: 23px;
+    padding: 0px 20px;
+    color: #fff;
+    border: none;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    width: 375px;
+}
+
+.green {
+    background-color: #47a447;
+}
+
+.red {
+    background-color: #dc3545
+}
+
+.yellow {
+    background-color: #ffc107;
+}
+
+.orange {
+    background-color: #fd7e14;
+}
+
+.cyan {
+    background-color: #17a2b8;
+}

@@ -1,0 +1,59 @@
+<div class="full-page">
+	<div class="page-block" fxLayout="row" fxLayoutWrap>
+		<div class="left-block text-center" fxFlex="1 1 0">
+			<img src="https://image.ibb.co/nuN8Re/12.jpg" alt="Company or Product Logo" class="logo" />
+      <div class="sidebar-footer">
+        <figure><img src="https://image.ibb.co/kzkCme/Logo_Samples2_91_min.jpg" alt=""></figure>
+        <p>By logging in you agree to our <br> <a routerLink="/">Terms and Conditions</a> and <a routerLink="/">Privacy Policy</a></p>
+      </div>
+    </div>
+    <div class="right-block" fxFlex="1 1 0">
+      <ng-container *ngIf="showEmailForm">
+        <h4>Create New Password</h4>
+        <p>Enter your email address below and we will send you a verification code to authorize a password reset.</p>
+        <form [formGroup]="emailForm">
+          <div class="form-field-set">
+            <div class="form-group" fxLayout="row" fxLayoutAlign="flex-start center">
+              <mat-icon>email </mat-icon>
+              <mat-form-field>
+                <input matInput placeholder="Email Address" formControlName="email" type="email" required>
+              </mat-form-field>
+            </div>
+          </div>
+          <div fxLayout="row" fxLayoutWrap fxLayoutAlign="space-between">
+              <button mat-raised-button (click)="backtologin()">BACK</button> 
+              <button [disabled]="!emailForm.valid" mat-raised-button color="primary" (click)="sendResetEmail()">Continue</button>
+          </div>
+      </form>	
+      </ng-container>
+      <ng-container *ngIf="showPasswordForm">
+        <h4>Create new password</h4>
+        <p> Enter your new password below.</p>
+        <form [formGroup]="passwordForm">
+          <div class="form-field-set">
+            <div class="form-group resend-group" fxLayout="row" fxLayoutAlign.sm="flex-start center" fxLayout.xs="column">
+    
+               <mat-form-field fxFlex="1 1 0">
+                <input matInput type="text" placeholder="Verification Code"  required> 
+              </mat-form-field>
+                 <a color="primary"  class="resent-code">RESEND CODE</a>
+            </div>
+            <div class="form-group" fxLayout="row" fxLayoutAlign="flex-start center" fxLayout.xs="column">
+              <mat-icon>vpn_key</mat-icon>
+              <mat-form-field fxFlex="1 1 0">
+                <input matInput type="password" placeholder="Password" formControlName="password" required>
+              </mat-form-field>
+              <mat-form-field fxFlex="1 1 0">
+                <input matInput type="password" placeholder="Confirm Password" formControlName="confirmPassword" required>
+              </mat-form-field>
+            </div>
+          </div>
+          <div fxLayout="row" fxLayoutWrap fxLayoutAlign="space-between">
+            <button mat-raised-button (click)="backtologin()">CANCEL</button>
+            <button [disabled]="!passwordForm.valid" mat-raised-button color="primary" (click)="changePassword()">Change Password</button>            
+          </div>
+        </form>	
+      </ng-container> 
+    </div>
+	</div>
+</div>
