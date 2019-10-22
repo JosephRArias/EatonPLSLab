@@ -16,8 +16,8 @@ export class HomeComponent implements OnInit {
   dateTxt: string;
 
   actions : any[] = [
-                  {'name' : 'Nuevo Request', 'color' : 'green', 'icon' : 'cloud', 'action' : 'nuevo', 'user' : '5,4,3'},
-                  {'name' : 'Ver Mis Request', 'color' : 'yellow', 'icon' : 'check', 'action' : 'request', 'user' : '5,3'},
+                  {'name' : 'Nuevo Request', 'color' : 'green', 'icon' : 'cloud', 'action' : 'requestForm', 'user' : '5,4,3'},
+                  {'name' : 'Ver Mis Request', 'color' : 'yellow', 'icon' : 'check', 'action' : 'requestList', 'user' : '5,3'},
                   {'name' : 'Mis Pendientes', 'color' : 'cyan', 'icon' : 'check', 'action' : 'pendientes', 'user' : '5,2'},
                   {'name' : 'Reporte Tecnico', 'color' : 'red', 'icon' : 'check', 'action' : 'tecnicos', 'user' : '1'},
                   {'name' : 'Accion 5', 'color' : 'orange', 'icon' : 'check', 'action' : '/form', 'user' : '1'},
@@ -39,7 +39,7 @@ export class HomeComponent implements OnInit {
   }
 
   gotoPage(item:string){
-    console.log(item);
+    this.router.navigate(['./'+item]);
   }
 
   // Helper functions

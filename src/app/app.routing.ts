@@ -11,6 +11,7 @@ import { AdminGuard } from './guards/admin.guard';
 import { ModeratorGuard } from './guards/moderator.guard';
 import { ProjectsComponent } from './projects/projects.component';
 import { RequestFormComponent } from './request-form/request-form.component';
+import { ListComponent } from './requests/list/list.component';
 
 
 
@@ -24,6 +25,7 @@ export const appRoutes: Routes = [
 
     // tech (1)
     { path: 'tareas', component: TareasComponent, data:{title: 'Tasks'}, canActivate: [AuthGuard, UserGuard]},
+    { path: 'requestList', component: ListComponent, data:{title: 'List of my Requests'}, canActivate: [AuthGuard, UserGuard]},
     
 
     // eng (2)

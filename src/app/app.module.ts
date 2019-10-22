@@ -46,6 +46,7 @@ import { NavMenuComponent } from './shared/nav-menu.component';
 import { ProjectsComponent } from './projects/projects.component';
 import { ModeratorGuard } from './guards/moderator.guard';
 import { RequestFormComponent } from './request-form/request-form.component';
+import { ListComponent } from './requests/list/list.component';
 
 
 @NgModule({
@@ -67,7 +68,7 @@ import { RequestFormComponent } from './request-form/request-form.component';
     MatSidenavModule,
    RouterModule.forRoot(appRoutes)],
 
-  declarations: [AppComponent, LoginComponent, HomeComponent, RegistrationComponent, ForgotPasswordComponent, TareasComponent, AdminMainComponent, NavMenuComponent, ProjectsComponent, RequestFormComponent],
+  declarations: [AppComponent, LoginComponent, HomeComponent, RegistrationComponent, ForgotPasswordComponent, TareasComponent, AdminMainComponent, NavMenuComponent, ProjectsComponent, RequestFormComponent, ListComponent],
   bootstrap: [AppComponent],
   providers: [MatIconRegistry, AppService, MsalService, AuthGuard, ModeratorGuard, UserGuard, AdminGuard, {provide: APP_BASE_HREF, useValue : '/'}]
 })
