@@ -8,22 +8,34 @@ import { FirebaseService } from '../services/firebase.service';
   styleUrls: ['./request-form.component.css']
 })
 export class RequestFormComponent implements OnInit {
+  
+  userProfile:any;
 
-  constructor(private firebase: FirebaseService) { }
+  constructor(private firebase: FirebaseService) { 
+    this.userProfile = localStorage.getItem('userDetail').split(','); // [1] <- user email 
+  }
 
   ngOnInit() {
   }
 
-
-  addNew(){
-
-    var newBatch = new BatchModel();
-  
-    // Populate data from web form
-
+  addNewRequest(){
     
-    this.firebase.addNewBatch(newBatch);
+    var newItem = new BatchModel();
+    
+    newItem.initDate = new Date();
+    newItem.id = ""
+    // Llena el item de los datos del form
 
+
+    this.firebase.addNewBatch(newItem).then(res => {
+        console.log(res);
+
+        // Ejecutar accion cuando la data se graba en firebase
+        // redireccionar, o mostrar un mensaje, etc...
+          
+    }).catch(err => {
+      console.log(err);
+    });
   }
 
 }

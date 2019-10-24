@@ -2,6 +2,8 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { UsersModel } from '../models/users.model';
 import { BatchModel } from '../models/batch.model';
+import { AngularFirestore } from '@angular/fire/firestore';
+
 
 @Injectable({
   providedIn: 'root'
@@ -10,7 +12,7 @@ export class FirebaseService {
 
   private url:string = "https://time-logger-3addd.firebaseio.com";
 
-  constructor(private http:HttpClient) { 
+  constructor(private http:HttpClient, public db:AngularFirestore) { 
     
   }
 
@@ -63,11 +65,20 @@ export class FirebaseService {
     return this.http.put(`${this.url}/users/${user.id}/${user.fbid}.json`, data).subscribe();
   }
 
-  addNewBatch(batch: BatchModel){  
-   
-    // save data to Firebase
+  addNewBatch(batch: BatchModel){
+    return this.db.collection('batch').add(batch);
+  };
 
-    console.log(batch);
+  getAllBatch(){
+    return this.db.collection('batch').snapshotChanges();
+  }
+
+  getBatchbyId(id:string){
+    this.db.collection('batch').doc(id).snapshotChanges();
+  }
+
+  updateBatch(id:string, data:BatchModel){
+    return this.db.collection('batch').doc(id).set(data);
   }
 
 }
