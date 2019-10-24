@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { UsersModel } from '../models/users.model';
+import { BatchModel } from '../models/batch.model';
 
 @Injectable({
   providedIn: 'root'
@@ -60,6 +61,13 @@ export class FirebaseService {
     }
 
     return this.http.put(`${this.url}/users/${user.id}/${user.fbid}.json`, data).subscribe();
+  }
+
+  addNewBatch(batch: BatchModel){  
+   
+    // save data to Firebase
+
+    console.log(batch);
   }
 
 }

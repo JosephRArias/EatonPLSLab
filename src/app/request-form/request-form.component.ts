@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { BatchModel } from '../models/batch.model';
+import { FirebaseService } from '../services/firebase.service';
 
 @Component({
   selector: 'app-request-form',
@@ -7,9 +9,21 @@ import { Component, OnInit } from '@angular/core';
 })
 export class RequestFormComponent implements OnInit {
 
-  constructor() { }
+  constructor(private firebase: FirebaseService) { }
 
   ngOnInit() {
+  }
+
+
+  addNew(){
+
+    var newBatch = new BatchModel();
+  
+    // Populate data from web form
+
+    
+    this.firebase.addNewBatch(newBatch);
+
   }
 
 }
