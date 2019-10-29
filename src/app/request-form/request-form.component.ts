@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { BatchModel } from '../models/batch.model';
+import { FormControl, FormGroup, FormArray } from '@angular/forms';
+import { BatchModel } from '../models/request-form.model';
+import { AngularFirestore } from '@angular/fire/firestore';
 import { FirebaseService } from '../services/firebase.service';
 
 @Component({
@@ -8,34 +10,48 @@ import { FirebaseService } from '../services/firebase.service';
   styleUrls: ['./request-form.component.css']
 })
 export class RequestFormComponent implements OnInit {
-  
-  userProfile:any;
-
-  constructor(private firebase: FirebaseService) { 
-    this.userProfile = localStorage.getItem('userDetail').split(','); // [1] <- user email 
-  }
+  Purposes = ['VN', 'Deviation', 'PPQI', 'PPAP'];
+  Username: any;
+  TestTypes: Array<String> = ['Thermal 135%', 'Thermal 200%', 'Thermal HotBox', 'Endurance',
+  'Magnetica', 'Electronica', 'MV Drop', 'Temperature Rise', 'Calibracion', 'Impedancia', 'Otra(Especifique en comentarios)'];
+  constructor(public requestForm: BatchModel, private firebase: FirebaseService) {
+   }
 
   ngOnInit() {
+    this.Username = localStorage.getItem('userDetail').split(',');
+    this.requestForm.requestForm.get('TestTypes').setValue(this.addTypesControl());
+  }
+  addTypesControl() {
+    const arr = this.TestTypes.map(item => new FormControl());
   }
 
-  addNewRequest(){
-    
-    var newItem = new BatchModel();
-    
-    newItem.initDate = new Date();
-    newItem.id = ""
-    // Llena el item de los datos del form
-
-
-    this.firebase.addNewBatch(newItem).then(res => {
-        console.log(res);
-
-        // Ejecutar accion cuando la data se graba en firebase
-        // redireccionar, o mostrar un mensaje, etc...
-          
-    }).catch(err => {
-      console.log(err);
+  onSubmit() {
+    let data = this.requestForm.requestForm.value;
+    console.log(this.requestForm.requestForm.get('Priority').value);
+    this.firebase.registerRequest(data)
+    .then(res => {
+      this.requestForm.requestForm.reset();
     });
   }
+  onCheckChange(event) {
+    const formArray: FormArray = this.requestForm.requestForm.get('TestTypes') as FormArray;
+    /* Selected */
+    if (event.target.checked) {
+      // Add a new control in the arrayForm
+      formArray.push(new FormControl(event.target.value));
+      console.log(event.target.value);
+    } else {
+      // find the unselected element
+      let i = 0;
+      formArray.controls.forEach((ctrl: FormControl) => {
+        if (ctrl.value === event.target.value) {
+          // Remove the unselected element from the arrayForm
+          formArray.removeAt(i);
+          return;
+        }
+        i++;
+      });
+    }
 
+  }
 }
