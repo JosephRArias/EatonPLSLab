@@ -9,31 +9,46 @@ import { FirebaseService } from '../../services/firebase.service';
 export class ListComponent implements OnInit {
 
   batch :any[] = [];
+  batch2:any[] = [];
+
   userProfile:any;
+  userType:any;
 
   constructor(private firebase:FirebaseService) {
     this.userProfile = localStorage.getItem('userDetail').split(',');
+    this.userType = localStorage.getItem('accessReference');
    }
 
   ngOnInit() {
-    this.firebase.getAllBatch().subscribe((snapshot)=>{
+    this.firebase.getAllBatch().subscribe((snapshot) => {
       this.batch = [];
+      
+      snapshot.forEach((data:any)=>{
+        let dataCont = data.payload.doc.data();
+          this.batch.push({
+            id: data.payload.doc.id,
+            data: dataCont
+          });
+      });
+    });
+
+
+    this.firebase.getBatchNoTech().subscribe((snapshot) => {
+      this.batch2 = [];
       
       snapshot.forEach((data:any)=>{
         
         let dataCont = data.payload.doc.data();
 
-        if(this.userProfile[1] === dataCont.user){
-          this.batch.push({
+        //if(this.userProfile[1] === dataCont.user){
+          this.batch2.push({
             id: data.payload.doc.id,
             data: dataCont
           });
-        }
+        //}
       });
-    });
-  
-    
-  
+
+    });  
   }
 
 }

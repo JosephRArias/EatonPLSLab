@@ -1,5 +1,140 @@
-<pre>
+<div class="ml-5 mr-5 mt-5">
+    <h1>Hola, {{ userProfile[0] }}</h1>
 
-{{batch | json}}
+    <div class="row" *ngIf="userType > 4 || userType == 3">
+        <div class="col-sm-6">
+            <h4>Todos los request</h4>
+            <table class="table">
+                <thead class="thead-dark">
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Supervisor</th>
+                        <th scope="col">Last</th>
+                        <th scope="col">Handle</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let item of batch">
+                        <th scope="row">{{ item.data.id }}</th>
+                        <td>{{ item.data.name }}</td>
+                        <td>Otto</td>
+                        <td>@mdo</td>
+                    </tr>
+                </tbody>
+            </table>
 
-</pre>
+        </div>
+        <div class="col-sm-6">
+            <h4>Request sin asignar</h4>
+            <table class="table">
+                <thead class="thead-dark">
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">First</th>
+                        <th scope="col">Last</th>
+                        <th scope="col">Handle</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let item of batch2">
+                        <th scope="row">{{ item.data.id }}</th>
+                        <td>{{item.data.name}}</td>
+                        <td>Otto</td>
+                        <td>@mdo</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div class="row" *ngIf="userType > 4 || userType == 2">
+        <div class="col-sm-6">
+            <h4>Requests Pendientes</h4>
+            <table class="table">
+                <thead class="thead-dark">
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Ingeniero</th>
+                        <th scope="col">Last</th>
+                        <th scope="col">Handle</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let item of batch">
+                        <th scope="row">{{ item.data.id }}</th>
+                        <td>{{ item.data.name }}</td>
+                        <td>Otto</td>
+                        <td>@mdo</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="col-sm-6">
+            <h4>Requests Completados</h4>
+            <table class="table">
+                <thead class="thead-dark">
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">First</th>
+                        <th scope="col">Last</th>
+                        <th scope="col">Handle</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let item of batch2">
+                        <th scope="row">{{ item.data.id }}</th>
+                        <td>{{ item.data.name }}</td>
+                        <td>Otto</td>
+                        <td>@mdo</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div class="row" *ngIf="userType > 4 || userType == 1">
+        <div class="col-sm-6">
+            <h4>Mis Asignaciones Pendientes</h4>
+            <table class="table">
+                <thead class="thead-dark">
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Tecnico</th>
+                        <th scope="col">Last</th>
+                        <th scope="col">Handle</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let item of batch">
+                        <th scope="row">{{ item.data.id }}</th>
+                        <td>{{ item.data.name }}</td>
+                        <td>Otto</td>
+                        <td>@mdo</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="col-sm-6">
+            <h4>Mis Asignaciones Completadas</h4>
+            <table class="table">
+                <thead class="thead-dark">
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">First</th>
+                        <th scope="col">Last</th>
+                        <th scope="col">Handle</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let item of batch2">
+                        <th scope="row">{{ item.data.id }}</th>
+                        <td>{{ item.data.name }}</td>
+                        <td>Otto</td>
+                        <td>@mdo</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+</div>

@@ -15,16 +15,7 @@ export class HomeComponent implements OnInit {
   date : string;
   dateTxt: string;
 
-  actions : any[] = [
-                  {'name' : 'Nuevo Request', 'color' : 'green', 'icon' : 'cloud', 'action' : 'requestForm', 'user' : '5,4,3'},
-                  {'name' : 'Ver Mis Request', 'color' : 'yellow', 'icon' : 'check', 'action' : 'requestList', 'user' : '5,3'},
-                  {'name' : 'Mis Pendientes', 'color' : 'cyan', 'icon' : 'check', 'action' : 'pendientes', 'user' : '5,2'},
-                  {'name' : 'Reporte Tecnico', 'color' : 'red', 'icon' : 'check', 'action' : 'tecnicos', 'user' : '1'},
-                  {'name' : 'Accion 5', 'color' : 'orange', 'icon' : 'check', 'action' : '/form', 'user' : '1'},
-                  {'name' : 'Accion 6', 'color' : 'green', 'icon' : 'check', 'action' : '/form', 'user' : '1'},
-                  {'name' : 'Accion 7', 'color' : 'green', 'icon' : 'check', 'action' : '/form', 'user' : '2'},
-                  {'name' : 'Accion 8', 'color' : 'green', 'icon' : 'check', 'action' : '/form', 'user' : '1'},
-              ]
+  actions : any[];
 
   constructor(private router:Router, private appService:AppService, private firebase:FirebaseService) { 
     this.userProfile = localStorage.getItem('userDetail').split(',');
@@ -36,6 +27,17 @@ export class HomeComponent implements OnInit {
     setInterval(() => {
       this.fechaHora();
     }, 1000);
+
+
+    this.actions = [
+        {'name' : 'Nuevo Request', 'color' : 'green', 'icon' : 'cloud', 'action' : 'requestForm', 'user' : '5,4,3'},
+        {'name' : 'Mis Pendientes', 'color' : 'cyan', 'icon' : 'check', 'action' : 'pendientes', 'user' : '5,2'},
+        {'name' : 'Reporte Tecnico', 'color' : 'red', 'icon' : 'check', 'action' : 'tecnicos', 'user' : '1'},
+        {'name' : 'Accion 5', 'color' : 'orange', 'icon' : 'check', 'action' : '/form', 'user' : '1'},
+        {'name' : 'Accion 6', 'color' : 'green', 'icon' : 'check', 'action' : '/form', 'user' : '1'},
+        {'name' : 'Accion 7', 'color' : 'green', 'icon' : 'check', 'action' : '/form', 'user' : '2'},
+        {'name' : 'Accion 8', 'color' : 'green', 'icon' : 'check', 'action' : '/form', 'user' : '1'},
+    ];
   }
 
   gotoPage(item:string){

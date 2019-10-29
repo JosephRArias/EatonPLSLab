@@ -81,4 +81,12 @@ export class FirebaseService {
     return this.db.collection('batch').doc(id).set(data);
   }
 
+  getBatchbyStatus(status:number){
+    return this.db.collection('batch', ref => ref.where('status','==' , status)).snapshotChanges();
+  }
+
+  getBatchNoTech(){
+    return this.db.collection('batch', ref => ref.where('tech','==' , null)).snapshotChanges();
+  }
+
 }
