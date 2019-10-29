@@ -1,13 +1,19 @@
+import { FormGroup, FormControl, Validators, FormArray } from '@angular/forms';
+import {AngularFirestore} from '@angular/fire/firestore';
+
 export class BatchModel {
-    id: string; 
-    user: string;
-    dueDate: Date;
-    priority: number;
-    purpose: string;
-    disp: string;
-    
-    status: number = 0;
-    initDate: Date = new Date();
-    techId?: string;
-    comment?: string;
+  constructor(private firestore: AngularFirestore) {}
+  Batch = new FormGroup({
+    BatchID: new FormControl({value: '', disabled: true}),
+    Status: new FormControl('', Validators.required),
+    DueDate: new FormControl('', Validators.required),
+    Breakers: new FormControl('', Validators.required),
+    Priority: new FormControl,
+    TestTypes: new FormArray([]),
+    Catalog: new FormControl('', Validators.required),
+    Purpose: new FormControl,
+    Comment: new FormControl,
+    Requestor: new FormControl({value: '', disabled: true})
+
+  });
 }
