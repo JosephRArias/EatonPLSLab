@@ -28,7 +28,7 @@ export class RequestFormComponent implements OnInit {
   onSubmit() {
     let data = this.requestForm.requestForm.value;
     console.log(this.requestForm.requestForm.get('Priority').value);
-    this.firebase.registerRequest(data)
+    this.firebase.addNewBatch(data)
     .then(res => {
       this.requestForm.requestForm.reset();
     });
