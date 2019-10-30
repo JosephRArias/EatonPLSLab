@@ -1,13 +1,13 @@
 <div class="container">
     <h1>Registrar nuevo request</h1>
-    <form [formGroup]="this.requestForm.Batch" #f="ngForm" (ngSubmit)="f.form.valid && onSubmit()">
+    <form [formGroup]="this.requestForm.Batch" #f="ngForm" (ngSubmit)="onSubmit()">
         <div class="form-group">
             <label for="BatchID">Batch ID</label>
             <input type="number" class="form-control" id="batchID" formControlName="BatchID">
         </div>
         <div class="form-group">
             <label for="Requestor">Requestor</label>
-            <input type="text" class="form-control" id="Requestor" formControlName="Requestor" value="{{Username[1] + ' ' + Username[0]}}">
+            <input type="text" class="form-control" id="Requestor" formControlName="Requestor" value="{{Username[1]}}">
 
         </div>
         <div class="form-group">
@@ -78,6 +78,6 @@
                 <textarea name="textarea-input" id="textarea-input" rows="7" formControlName="Comment" placeholder="Contenido..." class="form-control"></textarea>
             </div>
         </div>
-        <button id="submitButton" type="submit" class="btn btn-primary" [disabled]="!f.form.valid">Submit Request</button>
+        <button id="submitButton" type="submit" class="btn btn-primary">Submit Request</button>
     </form>
 </div>

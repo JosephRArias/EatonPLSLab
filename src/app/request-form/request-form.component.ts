@@ -10,22 +10,20 @@ import { FirebaseService } from '../services/firebase.service';
   styleUrls: ['./request-form.component.css']
 })
 export class RequestFormComponent implements OnInit {
-  
+
   Purposes = ['VN', 'Deviation', 'PPQI', 'PPAP'];
   Username: any;
   TestTypes: Array<String> = ['Thermal 135%', 'Thermal 200%', 'Thermal HotBox', 'Endurance',
   'Magnetica', 'Electronica', 'MV Drop', 'Temperature Rise', 'Calibracion', 'Impedancia', 'Otra(Especifique en comentarios)'];
   
-  
+  formArray: FormArray;
+
   constructor(public requestForm: BatchModel, private firebase: FirebaseService) {
+    this.formArray = this.requestForm.Batch.get('TestTypes') as FormArray;
   }
 
   ngOnInit() {
     this.Username = localStorage.getItem('userDetail').split(',');
-    this.requestForm.Batch.get('TestTypes').setValue(this.addTypesControl());
-  }
-  addTypesControl() {
-    const arr = this.TestTypes.map(item => new FormControl());
   }
 
   onSubmit() {
@@ -36,25 +34,23 @@ export class RequestFormComponent implements OnInit {
       this.requestForm.Batch.reset();
     });
   }
+
   onCheckChange(event: any) {
-    const formArray: FormArray = this.requestForm.Batch.get('TestTypes') as FormArray;
     /* Selected */
     if (event.target.checked) {
       // Add a new control in the arrayForm
-      formArray.push(new FormControl(event.target.value));
-      //console.log(event.target.value);
+      this.formArray.push(new FormControl(event.target.value));
     } else {
       // find the unselected element
       let i = 0;
-      formArray.controls.forEach((ctrl: FormControl) => {
+      this.formArray.controls.forEach((ctrl: FormControl) => {
         if (ctrl.value === event.target.value) {
           // Remove the unselected element from the arrayForm
-          formArray.removeAt(i);
+          this.formArray.removeAt(i);
           return;
         }
         i++;
       });
     }
-
   }
 }
