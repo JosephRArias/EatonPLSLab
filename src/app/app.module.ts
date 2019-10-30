@@ -52,6 +52,8 @@ import { ModeratorGuard } from './guards/moderator.guard';
 import { RequestFormComponent } from './request-form/request-form.component';
 import { ListComponent } from './requests/list/list.component';
 
+import { BatchModel } from './models/batch.model';
+
 
 @NgModule({
   imports: [BrowserModule, FormsModule, ReactiveFormsModule, BrowserAnimationsModule,
@@ -78,7 +80,7 @@ import { ListComponent } from './requests/list/list.component';
 
   declarations: [AppComponent, LoginComponent, HomeComponent, RegistrationComponent, ForgotPasswordComponent, TareasComponent, AdminMainComponent, NavMenuComponent, ProjectsComponent, RequestFormComponent, ListComponent],
   bootstrap: [AppComponent],
-  providers: [MatIconRegistry, AppService, MsalService, AuthGuard, ModeratorGuard, UserGuard, AdminGuard, {provide: APP_BASE_HREF, useValue : '/'}]
+  providers: [MatIconRegistry, AppService, MsalService, AuthGuard, ModeratorGuard, UserGuard, AdminGuard, BatchModel, {provide: APP_BASE_HREF, useValue : '/'}]
 })
 export class AppModule {
 
