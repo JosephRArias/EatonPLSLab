@@ -7,7 +7,8 @@ export class BatchModel {
   
   Batch = new FormGroup({
     BatchID: new FormControl({value: '', disabled: true}),
-    Status: new FormControl('', Validators.required),
+    Status: new FormControl('New'),
+    Tech: new FormControl(null),
     DueDate: new FormControl('', Validators.required),
     Breakers: new FormControl('', Validators.required),
     Priority: new FormControl,

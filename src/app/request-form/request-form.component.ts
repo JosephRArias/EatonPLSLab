@@ -3,6 +3,7 @@ import { FormControl, FormGroup, FormArray } from '@angular/forms';
 import { BatchModel } from '../models/batch.model';
 
 import { FirebaseService } from '../services/firebase.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-request-form',
@@ -18,7 +19,7 @@ export class RequestFormComponent implements OnInit {
   
   formArray: FormArray;
 
-  constructor(public requestForm: BatchModel, private firebase: FirebaseService) {
+  constructor(public requestForm: BatchModel, private firebase: FirebaseService, private router: Router) {
     this.formArray = this.requestForm.Batch.get('TestTypes') as FormArray;
   }
 
@@ -28,10 +29,13 @@ export class RequestFormComponent implements OnInit {
 
   onSubmit() {
     let data = this.requestForm.Batch.value;
-    //console.log(this.requestForm.Batch.get('Priority').value);
+    
     this.firebase.addNewBatch(data)
     .then(res => {
       this.requestForm.Batch.reset();
+    }).then( () =>{
+      // redirect to homepage.
+      this.router.navigate(['/']);
     });
   }
 

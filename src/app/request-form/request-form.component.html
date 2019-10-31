@@ -78,6 +78,6 @@
                 <textarea name="textarea-input" id="textarea-input" rows="7" formControlName="Comment" placeholder="Contenido..." class="form-control"></textarea>
             </div>
         </div>
-        <button id="submitButton" type="submit" class="btn btn-primary">Submit Request</button>
+        <button id="submitButton" type="submit" class="btn btn-primary" [disabled]="!f.form.valid">Submit Request</button>
     </form>
 </div>
