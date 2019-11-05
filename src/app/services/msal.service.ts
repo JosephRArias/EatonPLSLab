@@ -67,6 +67,7 @@ export class MsalService {
         return localStorage.getItem('localLoginToken') && Date.now() < parseInt(localStorage.getItem('expireAt'));
     }
 
+
     public localLogin(authResult): any {
 
         // Set the time that the Access Token will expire at

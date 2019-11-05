@@ -6,11 +6,6 @@
             <input type="number" class="form-control" id="batchID" formControlName="BatchID">
         </div>
         <div class="form-group">
-            <label for="Requestor">Requestor</label>
-            <input type="text" class="form-control" id="Requestor" formControlName="Requestor" value="{{Username[1]}}">
-
-        </div>
-        <div class="form-group">
             <label for="DueDate">Due Date</label>
             <input placeholder="Seleccione la fecha" type="date" class="form-control" id="DueDate" formControlName="DueDate" [ngClass]="{'is-invalid': requestForm.Batch.get('DueDate').touched && requestForm.Batch.get('DueDate').invalid}">
             <div class="invalid-feedback">

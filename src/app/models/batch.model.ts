@@ -3,12 +3,10 @@ import {AngularFirestore} from '@angular/fire/firestore';
 
 export class BatchModel {
 
-  constructor(private firestore: AngularFirestore) {}
+  constructor(private firestore: AngularFirestore) {
+  }
   
   Batch = new FormGroup({
-    BatchID: new FormControl({value: '', disabled: true}),
-    Status: new FormControl('New'),
-    Tech: new FormControl(null),
     DueDate: new FormControl('', Validators.required),
     Breakers: new FormControl('', Validators.required),
     Priority: new FormControl,
@@ -16,7 +14,12 @@ export class BatchModel {
     Catalog: new FormControl('', Validators.required),
     Purpose: new FormControl,
     Comment: new FormControl,
-    Requestor: new FormControl({value: '', disabled: true}),
+    
+    BatchID: new FormControl(),
+
+    Status: new FormControl('New'),
+    tech: new FormControl(null),
+    user: new FormControl(localStorage.getItem('userDetail').split(',')[1]),
     _ts: new FormControl(new Date().getTime()),
   });
 

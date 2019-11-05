@@ -85,8 +85,29 @@ export class FirebaseService {
     return this.db.collection('batch', ref => ref.where('status','==' , status)).snapshotChanges();
   }
 
-  getBatchNoTech(){
-    return this.db.collection('batch', ref => ref.where('tech','==' , null)).snapshotChanges();
+  asignTech(id:string, techTxt:string){
+    let data = {
+      tech : techTxt,
+      Status : "Tech Asign"
+    }
+    return this.db.collection('batch').doc(id).update(data);
+  }
+
+  getTechList(){
+    let data : UsersModel[] = [];
+
+    this.http.get(`${this.url}/users.json`).subscribe(res => {
+      for (const key in res) {
+        let user : UsersModel;
+        for(const secKey in res[key]){
+          user = res[key][secKey];
+          user.fbid = secKey;
+        }
+        user.id = key;
+        if(user.type == 1) data.push(user);    
+      }
+    });
+    return data;
   }
 
 }

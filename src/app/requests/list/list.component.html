@@ -2,52 +2,115 @@
     <h1>Hola, {{ userProfile[0] }}</h1>
 
     <div class="row" *ngIf="userType > 4 || userType == 3">
-        <div class="col-sm-6">
-            <h4>Todos los request</h4>
+        <div class="col-sm-7">
+            <h4>Pending request</h4>
             <table class="table">
                 <thead class="thead-dark">
                     <tr>
-                        <th scope="col">#</th>
-                        <th scope="col">Supervisor</th>
-                        <th scope="col">Last</th>
-                        <th scope="col">Handle</th>
+                        <th scope="col">Batch ID</th>
+                        <th scope="col">Catalog</th>
+                        <th scope="col">Requestor</th>
+                        <th scope="col">Qty</th>
+                        <th scope="col">Priority</th>
+                        <th scope="col">DueDate</th>
+                        <th scope="col">Status</th>
+                        <th scope="col">Details</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr *ngFor="let item of batch">
-                        <th scope="row">{{ item.data.id }}</th>
-                        <td>{{ item.data.name }}</td>
-                        <td>Otto</td>
-                        <td>@mdo</td>
+                        <th scope="row">{{ item.data.BatchID }}</th>
+                        <td>{{ item.data.Catalog }}</td>
+                        <td>{{ item.data.user }}</td>
+                        <td>{{ item.data.Breakers }}</td>
+                        <td>{{ item.data.Priority }}</td>
+                        <td>{{ item.data.DueDate }}</td>
+                        <td>
+                            <span class="badge" [ngClass]="{'badge-danger': item.data.Status == 'New', 'badge-info': item.data.Status != 'New'}">{{ item.data.Status }}</span>
+
+                        </td>
+                        <td>
+                            <button type="button" class="btn btn-warning btn-sm" (click)="details(item.id)">
+                                <i class="fa fa-info"></i>
+                            </button>
+                        </td>
                     </tr>
                 </tbody>
             </table>
 
         </div>
-        <div class="col-sm-6">
-            <h4>Request sin asignar</h4>
+        <div class="col-sm-5">
+            <h4>Not Asigned Request</h4>
             <table class="table">
                 <thead class="thead-dark">
                     <tr>
-                        <th scope="col">#</th>
-                        <th scope="col">First</th>
-                        <th scope="col">Last</th>
-                        <th scope="col">Handle</th>
+                        <th scope="col">Batch ID</th>
+                        <th scope="col">Catalog</th>
+                        <th scope="col">Qty</th>
+                        <th scope="col">Priority</th>
+                        <th scope="col">DueDate</th>
+                        <th scope="col">Tech</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr *ngFor="let item of batch2">
-                        <th scope="row">{{ item.data.id }}</th>
-                        <td>{{item.data.name}}</td>
-                        <td>Otto</td>
-                        <td>@mdo</td>
+                        <th scope="row">{{ item.data.BatchID }}</th>
+                        <td>{{ item.data.Catalog }}</td>
+                        <td>{{ item.data.Breakers }}</td>
+                        <td>{{ item.data.Priority }}</td>
+                        <td>{{ item.data.DueDate }}</td>
+                        <td>
+                            <select class="form-control" (change)="selectTech(item.id, $event.target.value)">
+                                <option> --- Select Tech ---</option>
+                                <option value="{{tech.email}}" *ngFor="let tech of techUsers">{{tech.name}}</option>
+                            </select>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="col-sm-12">
+            <h4>Completed Request</h4>
+            <table class="table">
+                <thead class="thead-dark">
+                    <tr>
+                        <th scope="col">Batch ID</th>
+                        <th scope="col">Catalog</th>
+                        <th scope="col">Requestor</th>
+                        <th scope="col">Qty</th>
+                        <th scope="col">Priority</th>
+                        <th scope="col">Main Tech</th>
+                        <th scope="col">DueDate</th>
+                        <th scope="col">Status</th>
+                        <th scope="col">Details</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let item of completed">
+                        <th scope="row">{{ item.data.BatchID }}</th>
+                        <td>{{ item.data.Catalog }}</td>
+                        <td>{{ item.data.user }}</td>
+                        <td>{{ item.data.Breakers }}</td>
+                        <td>{{ item.data.Priority }}</td>
+                        <td>{{ item.data.tech }}</td>
+                        <td>{{ item.data.DueDate }}</td>
+                        <td>
+                            <span class="badge badge-success">{{ item.data.Status }}</span>
+
+                        </td>
+                        <td>
+                            <button type="button" class="btn btn-warning btn-sm" (click)="details(item.id)">
+                                <i class="fa fa-info"></i>
+                            </button>
+                        </td>
                     </tr>
                 </tbody>
             </table>
         </div>
     </div>
 
-    <div class="row" *ngIf="userType > 4 || userType == 2">
+    <div class="row" *ngIf="userType == 2">
         <div class="col-sm-6">
             <h4>Requests Pendientes</h4>
             <table class="table">
@@ -92,7 +155,7 @@
         </div>
     </div>
 
-    <div class="row" *ngIf="userType > 4 || userType == 1">
+    <div class="row" *ngIf="userType == 1">
         <div class="col-sm-6">
             <h4>Mis Asignaciones Pendientes</h4>
             <table class="table">

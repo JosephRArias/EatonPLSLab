@@ -54,7 +54,6 @@ import { ListComponent } from './requests/list/list.component';
 
 import { BatchModel } from './models/batch.model';
 
-
 @NgModule({
   imports: [BrowserModule, FormsModule, ReactiveFormsModule, BrowserAnimationsModule,
     MatButtonModule,
