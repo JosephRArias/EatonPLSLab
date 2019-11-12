@@ -25,7 +25,8 @@
                         "styles": [
                             "./node_modules/@pxblue/themes/angular/theme.scss",
                             "./node_modules/typeface-open-sans",
-                            "src/styles.scss"
+                            "src/styles.scss",
+                            "./node_modules/font-awesome/css/font-awesome.css"
                         ],
                         "scripts": []
                     },

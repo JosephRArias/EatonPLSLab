@@ -14,8 +14,9 @@ export class BatchModel {
     Catalog: new FormControl('', Validators.required),
     Purpose: new FormControl,
     Comment: new FormControl,
-    
-    BatchID: new FormControl(),
+    Line: new FormControl,
+    Disposition: new FormControl,
+    BatchID: new FormControl,
 
     Status: new FormControl('New'),
     tech: new FormControl(null),

@@ -1,78 +1,141 @@
 <div class="container">
-    <h1>Registrar nuevo request</h1>
-    <form [formGroup]="this.requestForm.Batch" #f="ngForm" (ngSubmit)="onSubmit()">
-        <div class="form-group">
-            <label for="BatchID">Batch ID</label>
-            <input type="number" class="form-control" id="batchID" formControlName="BatchID">
-        </div>
-        <div class="form-group">
-            <label for="DueDate">Due Date</label>
-            <input placeholder="Seleccione la fecha" type="date" class="form-control" id="DueDate" formControlName="DueDate" [ngClass]="{'is-invalid': requestForm.Batch.get('DueDate').touched && requestForm.Batch.get('DueDate').invalid}">
-            <div class="invalid-feedback">
-                Debe seleccionar una fecha
-            </div>
+    <div class="main">
+        <div class="main-center">
+            <h1>Registrar nuevo request</h1>
+            <form [formGroup]="this.requestForm.Batch" #f="ngForm" (ngSubmit)="onSubmit()">
+                <div class="form-group">
+                    <label for="BatchID">Batch ID</label>
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="fas fa-file"></i></span>
+                        <input type="number" class="form-control" id="batchID" formControlName="BatchID" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="DueDate">Due Date</label>
+                    <div class="input-group">
+                        <span class="input-group-addon">
+                            <i class="fas fa-calendar-week"></i>
+                        </span>
+                        <input placeholder="Seleccione la fecha" type="date" class="form-control" id="DueDate"
+                            formControlName="DueDate" [ngClass]="{
+                'is-invalid':
+                  requestForm.Batch.get('DueDate').touched &&
+                  requestForm.Batch.get('DueDate').invalid
+              }" />
+                        <div class="invalid-feedback">
+                            Debe seleccionar una fecha
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="Catalog">Catalogo</label>
+                    <div class="input-group">
+                        <span class="input-group-addon">
+                            <i class="fas fa-folder-open"></i>
+                        </span>
+                        <select placeholder="Seleccionar Catalogo" class="form-control" id="catalog"
+                            formControlName="Catalog" [ngClass]="{
+              'is-invalid':
+                requestForm.Batch.get('Catalog').touched &&
+                requestForm.Batch.get('Catalog').invalid
+            }">
+                            <option>Option 1</option>
+                        </select>
+                        <div class="invalid-feedback">
+                            Debe seleccionar un catalogo
+                        </div>
+                    </div>
 
-        </div>
-        <div class="form-group">
-            <label for="Catalog">Catalogo</label>
-            <select placeholder="Seleccionar Catalogo" class="form-control" id="catalog" formControlName="Catalog" [ngClass]="{'is-invalid': requestForm.Batch.get('Catalog').touched && requestForm.Batch.get('Catalog').invalid}">
-                <option>Option 1</option>
-            </select>
-            <div class="invalid-feedback">
-                Debe seleccionar un catalogo
-            </div>
-        </div>
-        <div class="form-group col-md-3">
-            <label for="Tests">Tipo de Prueba</label>
-        </div>
-        <div class="box">
-            <div class="custom-control custom-checkbox" *ngFor="let control of TestTypes; let i=index">
-                <input type="checkbox" formArrayName="TestTypes" class="custom-control-input" id="{{control}}" (change)="onCheckChange($event)" [value]="control">
-                <label class="custom-control-label" for="{{control}}">{{control}}</label>
-            </div>
-        </div>
-        <div class="form-group">
-            <label for="Breakers">Quantity</label>
-            <input type="number" placeholder="0" class="form-control" id="quantity" formControlName="Breakers" [ngClass]="{'is-invalid': requestForm.Batch.get('Breakers').touched && requestForm.Batch.get('Breakers').invalid}
-            || requestForm.Batch.get('Breakers').value === 0">
-            <div class="invalid-feedback">
-                Debe introducir un valor valido
-            </div>
-        </div>
-        <div class="form-group">
-            <label for="Purpose">Purpose</label>
-            <select class="form-control" id="purpose" formControlName="Purpose">
-                <option value = "" default selected>Seleccionar Proposito</option>
-                <option *ngFor="let purpose of Purposes">{{purpose}}</option>
-            </select>
-        </div>
+                </div>
+                <div class="form-group">
+                    <label for="Tests">Tipo de Prueba</label>
+                    <span class="input-group-addon">
+                            <i class="fas fa-bolt"></i>
+                        </span>
+                </div>
+                <div class="box">
+                    <div class="custom-control custom-checkbox" *ngFor="let control of TestTypes; let i = index">
+                        <input type="checkbox" formArrayName="TestTypes" class="custom-control-input" id="{{ control }}"
+                            (change)="onCheckChange($event)" [value]="control" />
+                        <label class="custom-control-label" for="{{ control }}">{{
+              control
+            }}</label>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="Breakers">Quantity</label>
+                    <div class="input-group">
+                        <span class="input-group-addon">
+                            <i class="fas fa-plus"></i>
+                        </span>
+                        <input type="number" placeholder="0" class="form-control" id="quantity"
+                            formControlName="Breakers" [ngClass]="
+              {
+                'is-invalid':
+                  requestForm.Batch.get('Breakers').touched &&
+                  requestForm.Batch.get('Breakers').invalid
+              } || requestForm.Batch.get('Breakers').value === 0
+            " />
+                        <div class="invalid-feedback">
+                            Debe introducir un valor valido
+                        </div>
+                    </div>
 
-        <div class="form-group">
-            <label for="Priority">Priority: </label>
-            <div class="form-check-inline form-check" style="padding-left: 10px">
-                <label for="inline-radio1" class="form-check-label " style="padding-right: 10px;">
-                    <input type="radio" id="inline-radio1" name="Priority" value="Baja" class="form-check-input"
-                        formControlName="Priority">Baja
-                </label>
-                <label for="inline-radio2" class="form-check-label " style="padding-right: 10px;">
-                    <input type="radio" id="inline-radio2" name="Priority" value="Media" class="form-check-input"
-                        formControlName="Priority">Media
-                </label>
-                <label for="inline-radio3" class="form-check-label " style="padding-right: 10px;">
-                    <input type="radio" id="inline-radio3" name="Priority" value="Alta" class="form-check-input"
-                        formControlName="Priority">Alta
-                </label>
+                </div>
+                <div class="form-group">
+                    <label for="Purpose">Purpose</label>
+                    
+                    <div class="input-group">
+                        <span class="input-group-addon">
+                            <i class="fas fa-bullseye"></i>
+                        </span>
+                        <select class="form-control" id="purpose" formControlName="Purpose">
+                            <option value="" default selected>Seleccionar Proposito</option>
+                            <option *ngFor="let purpose of Purposes">{{ purpose }}</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="Disposition">Disposition</label>
+                </div>
 
-                <label for="inline-radio4" class="form-check-label ">
-                    <input type="radio" id="inline-radio4" name="Priority" value="Urgente" class="form-check-input"
-                        formControlName="Priority">Urgente
-                </label>
-            </div>
-            <div class="form-group">
-                <label for="Comment">Comentario</label>
-                <textarea name="textarea-input" id="textarea-input" rows="7" formControlName="Comment" placeholder="Contenido..." class="form-control"></textarea>
-            </div>
+                <div class="form-group">
+                    <label for="Priority">Priority                     
+                        <span class="input-group-addon">
+                        <i class="fab fa-product-hunt" style="padding: 0px;"></i>
+                    </span>: </label>
+                    <div class="form-check-inline form-check" style="padding-left: 10px">
+                        <label for="inline-radio1" class="form-check-label " style="padding-right: 10px;">
+                            <input type="radio" id="inline-radio1" name="Priority" value="Baja" class="form-check-input"
+                                formControlName="Priority" />Baja
+                        </label>
+                        <label for="inline-radio2" class="form-check-label " style="padding-right: 10px;">
+                            <input type="radio" id="inline-radio2" name="Priority" value="Media"
+                                class="form-check-input" formControlName="Priority" />Media
+                        </label>
+                        <label for="inline-radio3" class="form-check-label " style="padding-right: 10px;">
+                            <input type="radio" id="inline-radio3" name="Priority" value="Alta" class="form-check-input"
+                                formControlName="Priority" />Alta
+                        </label>
+
+                        <label for="inline-radio4" class="form-check-label ">
+                            <input type="radio" id="inline-radio4" name="Priority" value="Urgente"
+                                class="form-check-input" formControlName="Priority" />Urgente
+                        </label>
+                    </div>
+                    <div class="form-group">
+                        <label for="Comment">Comentario</label>
+                        <span class="input-group-addon">
+                                <i class="fas fa-comment"></i>
+                            </span>
+                        <textarea name="textarea-input" id="textarea-input" rows="7" formControlName="Comment"
+                            placeholder="Contenido..." class="form-control"></textarea>
+                    </div>
+                </div>
+                <button id="submitButton" type="submit" class="btn btn-primary" [disabled]="!f.form.valid">
+                    <i class="far fa-save"></i> Submit Request
+                </button>
+            </form>
         </div>
-        <button id="submitButton" type="submit" class="btn btn-primary" [disabled]="!f.form.valid">Submit Request</button>
-    </form>
+    </div>
 </div>

@@ -15,7 +15,7 @@ export class RequestFormComponent implements OnInit {
   Purposes = ['VN', 'Deviation', 'PPQI', 'PPAP'];
   Username: any;
   TestTypes: Array<String> = ['Thermal 135%', 'Thermal 200%', 'Thermal HotBox', 'Endurance',
-  'Magnetica', 'Electronica', 'MV Drop', 'Temperature Rise', 'Calibracion', 'Impedancia', 'Otra(Especifique en comentarios)'];
+  'Magnetica', 'Electronica', 'MV Drop', 'Temperature Rise', 'Calibracion', 'Impedancia', 'Otra (Especifique en comentarios)'];
   
   formArray: FormArray;
 
