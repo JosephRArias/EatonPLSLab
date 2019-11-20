@@ -53,6 +53,7 @@ import { RequestFormComponent } from './request-form/request-form.component';
 import { ListComponent } from './requests/list/list.component';
 
 import { BatchModel } from './models/batch.model';
+import { FilterPipe } from './pipes/filter.pipe';
 
 @NgModule({
   imports: [BrowserModule, FormsModule, ReactiveFormsModule, BrowserAnimationsModule,
@@ -77,7 +78,7 @@ import { BatchModel } from './models/batch.model';
     
      RouterModule.forRoot(appRoutes)],
 
-  declarations: [AppComponent, LoginComponent, HomeComponent, RegistrationComponent, ForgotPasswordComponent, TareasComponent, AdminMainComponent, NavMenuComponent, ProjectsComponent, RequestFormComponent, ListComponent],
+  declarations: [AppComponent, LoginComponent, HomeComponent, RegistrationComponent, ForgotPasswordComponent, TareasComponent, AdminMainComponent, NavMenuComponent, ProjectsComponent, RequestFormComponent, ListComponent, FilterPipe],
   bootstrap: [AppComponent],
   providers: [MatIconRegistry, AppService, MsalService, AuthGuard, ModeratorGuard, UserGuard, AdminGuard, BatchModel, {provide: APP_BASE_HREF, useValue : '/'}]
 })

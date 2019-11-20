@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FirebaseService } from '../../services/firebase.service';
-
+import * as _ from 'lodash';
 import swal from'sweetalert2';
 
 @Component({
@@ -12,11 +12,14 @@ export class ListComponent implements OnInit {
 
   batch :any[] = [];
   batch2:any[] = [];
-  completed: any[] = []
+  filteredBatches: any[] = [];
+  completed: any[] = [];
 
   userProfile:any;
   userType:any;
   techUsers:any;
+  public searchFilter: string;
+  filters = {};
 
   constructor(private firebase:FirebaseService) {
     this.userProfile = localStorage.getItem('userDetail').split(',');
@@ -27,6 +30,13 @@ export class ListComponent implements OnInit {
     this.supervisor();
   }
 
+  private applyFilters(){
+    this.filteredBatches = _.filter(this.batch, _.conforms(this.filters));
+  }
+  filterExact(property: string, rule: any){
+    this.filters[property] = val => val == rule;
+    this.applyFilters();
+  }
 
   supervisor() {
     //get tech userList
@@ -45,6 +55,7 @@ export class ListComponent implements OnInit {
             id: data.payload.doc.id,
             data: dataCont
           });
+          console.log(this.batch);
 
           if(!dataCont.tech){  
             this.batch2.push({
@@ -66,6 +77,9 @@ export class ListComponent implements OnInit {
 
   details(id:string){
     console.log(id);
+  }
+  getBatchesByID(batchID: string){
+     return this.batch.filter(foundBatch=>foundBatch.BatchID == batchID);
   }
 
   selectTech(id:string, tech:string){

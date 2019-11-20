@@ -29,6 +29,7 @@
     "@angular/router": "^8.1.0",
     "@pxblue/themes": "^2.1.0",
     "@sweetalert2/ngx-sweetalert2": "^6.0.1",
+    "@types/lodash": "^4.14.149",
     "core-js": "^2.5.4",
     "firebase": "^7.2.1",
     "font-awesome": "^4.7.0",

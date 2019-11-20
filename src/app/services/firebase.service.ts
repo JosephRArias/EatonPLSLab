@@ -88,7 +88,7 @@ export class FirebaseService {
   asignTech(id:string, techTxt:string){
     let data = {
       tech : techTxt,
-      Status : "Tech Asign"
+      Status : "Tech Assign"
     }
     return this.db.collection('batch').doc(id).update(data);
   }
