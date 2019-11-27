@@ -73,3 +73,6 @@ span.input-group-addon i {
 .custom-control-label{
     font-weight: normal;
 }
+#text-input{
+    margin-left: 5px;
+}

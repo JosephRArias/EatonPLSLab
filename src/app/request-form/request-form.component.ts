@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, FormArray } from '@angular/forms';
 import { BatchModel } from '../models/batch.model';
-
+import {Observable} from 'rxjs';
+import {map, startWith} from 'rxjs/operators';
 import { FirebaseService } from '../services/firebase.service';
 import { Router } from '@angular/router';
 
@@ -12,7 +13,12 @@ import { Router } from '@angular/router';
 })
 export class RequestFormComponent implements OnInit {
 
-  Purposes = ['VN', 'Deviation', 'PPQI', 'PPAP'];
+  Purposes = ['VN', 'Deviation', 'PPQI', 'PPAP', 'UL', 'MPD', 'MSA', 'Calibration Band', 'Production','Cost Saving'];
+  Catalogs = ['One', 'Two', 'Three'];
+  Lines = ['Smart Breakers', 'CHF2P'];
+  LineSelected : string;
+  filteredCatalogs: Observable<string[]>;
+  filteredLines: Observable<string[]>;
   Username: any;
   TestTypes: Array<String> = ['Thermal 135%', 'Thermal 200%', 'Thermal HotBox', 'Endurance',
   'Magnetica', 'Electronica', 'MV Drop', 'Temperature Rise', 'Calibracion', 'Impedancia', 'Otra (Especifique en comentarios)'];
@@ -25,6 +31,25 @@ export class RequestFormComponent implements OnInit {
 
   ngOnInit() {
     this.Username = localStorage.getItem('userDetail').split(',');
+    
+    this.filteredCatalogs = this.requestForm.Batch.controls['Catalog'].valueChanges
+      .pipe(
+        startWith(''),
+        map(value => this.CatalogsFilter(value))
+      );
+          this.filteredLines = this.requestForm.Batch.controls['Line'].valueChanges
+    .pipe(
+      startWith(''),
+      map(value => this.LinesFilter(value))
+    );
+  }
+  private CatalogsFilter(value: string): string[] {
+    const filterValue = value.toLowerCase();
+    return this.Catalogs.filter(option => option.toLowerCase().includes(filterValue));
+  }
+  private LinesFilter(value: string): string[] {
+    const filterValue = value.toLowerCase();
+    return this.Lines.filter(option => option.toLowerCase().includes(filterValue));
   }
 
   onSubmit() {

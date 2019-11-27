@@ -12,6 +12,7 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {
    MatButtonModule,
+   MatAutocompleteModule,
    MatCheckboxModule,
    MatFormFieldModule,
    MatInputModule,
@@ -58,6 +59,7 @@ import { FilterPipe } from './pipes/filter.pipe';
 @NgModule({
   imports: [BrowserModule, FormsModule, ReactiveFormsModule, BrowserAnimationsModule,
     MatButtonModule,
+    MatAutocompleteModule,
     MatCheckboxModule,
     MatFormFieldModule, 
     MatInputModule,
