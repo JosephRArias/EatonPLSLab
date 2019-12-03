@@ -101,12 +101,12 @@
                             requestForm.Batch.get('Purpose').value === ''
                         }
                       " >
-                      <div class="invalid-feedback">
-                        Debe seleccionar un prop&oacute;sito
-                    </div>
                             <option value='' default selected>Seleccionar Prop&oacute;sito</option>
                             <option *ngFor="let purpose of Purposes">{{ purpose }}</option>
                         </select>
+                        <div class="invalid-feedback">
+                            Debe seleccionar un prop&oacute;sito
+                        </div>
                     </div>
                 </div>
                 <div class="form-group">
@@ -139,20 +139,20 @@
                         </span>: </label>
                     <div class="form-check-inline form-check" style="padding-left: 10px">
                         <label for="inline-radio1" class="form-check-label " style="padding-right: 10px;">
-                            <input type="radio" id="inline-radio1" name="Priority" value="Baja" class="form-check-input"
+                            <input type="radio" id="inline-radio1" name="Priority" value="1" class="form-check-input"
                                 formControlName="Priority" />Baja
                         </label>
                         <label for="inline-radio2" class="form-check-label " style="padding-right: 10px;">
-                            <input type="radio" id="inline-radio2" name="Priority" value="Media"
+                            <input type="radio" id="inline-radio2" name="Priority" value="2"
                                 class="form-check-input" formControlName="Priority" />Media
                         </label>
                         <label for="inline-radio3" class="form-check-label " style="padding-right: 10px;">
-                            <input type="radio" id="inline-radio3" name="Priority" value="Alta" class="form-check-input"
+                            <input type="radio" id="inline-radio3" name="Priority" value="3" class="form-check-input"
                                 formControlName="Priority" />Alta
                         </label>
 
                         <label for="inline-radio4" class="form-check-label ">
-                            <input type="radio" id="inline-radio4" name="Priority" value="Urgente"
+                            <input type="radio" id="inline-radio4" name="Priority" value="4"
                                 class="form-check-input" formControlName="Priority" />Urgente
                         </label>
                     </div>

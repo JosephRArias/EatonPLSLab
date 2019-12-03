@@ -8,14 +8,15 @@ export class BatchModel {
   
   Batch = new FormGroup({
     Breakers: new FormControl('', Validators.required),
-    Priority: new FormControl,
-    TestTypes: new FormArray([]),
+    Priority: new FormControl('', Validators.required),
+    TestTypes: new FormArray([], Validators.required),
     Catalog: new FormControl('', Validators.required),
-    Purpose: new FormControl,
+    Purpose: new FormControl('', Validators.required),
     Comment: new FormControl,
+    Disposition: new FormControl('', Validators.required),
     Line: new FormControl('', Validators.required),
-    Disposition: new FormControl,
     BatchID: new FormControl,
+    Date: new FormControl(''),
 
     Status: new FormControl('New'),
     tech: new FormControl(null),

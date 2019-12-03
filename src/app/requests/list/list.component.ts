@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FirebaseService } from '../../services/firebase.service';
 import * as _ from 'lodash';
 import swal from'sweetalert2';
+import { BatchModel } from 'src/app/models/batch.model';
 
 @Component({
   selector: 'app-list',
@@ -12,14 +13,13 @@ export class ListComponent implements OnInit {
 
   batch :any[] = [];
   batch2:any[] = [];
-  filteredBatches: any[] = [];
   completed: any[] = [];
-
+  data: any[] = [];
   userProfile:any;
   userType:any;
   techUsers:any;
   public searchFilter: string;
-  filters = {};
+  public Order = 'ASC';
 
   constructor(private firebase:FirebaseService) {
     this.userProfile = localStorage.getItem('userDetail').split(',');
@@ -29,15 +29,6 @@ export class ListComponent implements OnInit {
   ngOnInit() {
     this.supervisor();
   }
-
-  private applyFilters(){
-    this.filteredBatches = _.filter(this.batch, _.conforms(this.filters));
-  }
-  filterExact(property: string, rule: any){
-    this.filters[property] = val => val == rule;
-    this.applyFilters();
-  }
-
   supervisor() {
     //get tech userList
     this.techUsers = this.firebase.getTechList();
@@ -81,6 +72,14 @@ export class ListComponent implements OnInit {
   getBatchesByID(batchID: string){
      return this.batch.filter(foundBatch=>foundBatch.BatchID == batchID);
   }
+  Sort(Criteria: string){
+    if(Criteria === 'Priority'){
+      this.data = this.batch.sort(this.SortByPriority);
+    }
+    else if(Criteria === 'Status'){
+      this.data = this.batch.sort(this.SortByStatus);
+    }
+  }
 
   selectTech(id:string, tech:string){
     this.firebase.asignTech(id, tech).then(res => {
@@ -88,6 +87,36 @@ export class ListComponent implements OnInit {
     }).catch(res => {
       swal.fire('Something Wrong', 'Try Again... ' + res, 'error');
     });
+  }
+  SortByPriority(c1: any, c2: any){
+    console.log(this.Order);
+    if(this.Order === 'ASC'){
+      if(c1.data.Priority > c2.data.Priority){
+        this.Order = 'DESC';
+        return 1;
+      }
+      else if(c1.data.Priority === c2.data.Priority){
+        this.Order = 'DESC';
+        return 0;
+      }
+      else {
+        this.Order = 'DESC';
+        return -1;
+      }
+    }
+
+  }
+  SortByStatus(c1: any, c2: any){
+    if(c1.data.Status > c2.data.Status){
+      return 1;
+    }
+    else if(c1.data.Status === c2.data.Status){
+      return 0;
+    }
+    else {
+      return -1;
+    }
+
   }
 
 }

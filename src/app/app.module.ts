@@ -55,6 +55,7 @@ import { ListComponent } from './requests/list/list.component';
 
 import { BatchModel } from './models/batch.model';
 import { FilterPipe } from './pipes/filter.pipe';
+import { DatePipe } from '@angular/common';
 
 @NgModule({
   imports: [BrowserModule, FormsModule, ReactiveFormsModule, BrowserAnimationsModule,

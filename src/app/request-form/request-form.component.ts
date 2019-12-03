@@ -5,11 +5,13 @@ import {Observable} from 'rxjs';
 import {map, startWith} from 'rxjs/operators';
 import { FirebaseService } from '../services/firebase.service';
 import { Router } from '@angular/router';
+import {DatePipe} from '@angular/common';
 
 @Component({
   selector: 'app-request-form',
   templateUrl: './request-form.component.html',
-  styleUrls: ['./request-form.component.css']
+  styleUrls: ['./request-form.component.css'],
+  providers: [DatePipe]
 })
 export class RequestFormComponent implements OnInit {
 
@@ -25,11 +27,13 @@ export class RequestFormComponent implements OnInit {
   
   formArray: FormArray;
 
-  constructor(public requestForm: BatchModel, private firebase: FirebaseService, private router: Router) {
+  constructor(public requestForm: BatchModel, private firebase: FirebaseService, private router: Router,private datePipe: DatePipe) {
     this.formArray = this.requestForm.Batch.get('TestTypes') as FormArray;
   }
 
   ngOnInit() {
+    this.requestForm.Batch.controls['Date'].setValue(this.datePipe.transform(new Date(),"yyyy-MM-dd"));
+    this.requestForm.Batch.controls['Date'].patchValue(this.datePipe.transform(new Date(),"yyyy-MM-dd"));
     this.Username = localStorage.getItem('userDetail').split(',');
     
     this.filteredCatalogs = this.requestForm.Batch.controls['Catalog'].valueChanges
@@ -53,6 +57,8 @@ export class RequestFormComponent implements OnInit {
   }
 
   onSubmit() {
+    this.requestForm.Batch.controls['Catalog'].setValue(this.requestForm.Batch.controls['Line'].value);
+    this.requestForm.Batch.controls['Catalog'].patchValue(this.requestForm.Batch.controls['Line'].value);
     let data = this.requestForm.Batch.value;
     
     this.firebase.addNewBatch(data)

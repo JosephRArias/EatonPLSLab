@@ -16,11 +16,11 @@
                     <tr>
                         <th scope="col">Batch ID</th>
                         <th scope="col">Catalog</th>
-                        <th scope="col">Requestor</th>
+                        <th scope="col">Requestor<span class="sort-icons"><i class="fas fa-sort" (click)="Sort('Requestor')"></i></span></th>
                         <th scope="col">Qty</th>
-                        <th scope="col">Priority</th>
+                        <th scope="col">Priority<span class="sort-icons"><i class="fas fa-sort" (ngModel) = "Order" (click) = "Sort('Priority')"></i></span></th>
                         <th scope="col">Date</th>
-                        <th scope="col">Status</th>
+                        <th scope="col">Status<span class="sort-icons"><i class="fas fa-sort" (click) = "Sort('Status')"></i></span></th>
                         <th scope="col">Details</th>
                     </tr>
                 </thead>
@@ -30,8 +30,11 @@
                         <td>{{ item.data.Catalog }}</td>
                         <td>{{ item.data.user }}</td>
                         <td>{{ item.data.Breakers }}</td>
-                        <td>{{ item.data.Priority }}</td>
-                        <td>{{ item.data.DueDate }}</td>
+                        <td *ngIf="item.data.Priority == 1">Baja</td>
+                        <td *ngIf="item.data.Priority == 2">Media</td>
+                        <td *ngIf="item.data.Priority == 3">Alta</td>
+                        <td *ngIf="item.data.Priority == 4">Urgente</td>
+                        <td>{{ item.data.Date }}</td>
                         <td>
                             <span class="badge" [ngClass]="{'badge-danger': item.data.Status == 'New', 'badge-info': item.data.Status != 'New'}">{{ item.data.Status }}</span>
 
@@ -65,7 +68,7 @@
                         <td>{{ item.data.Catalog }}</td>
                         <td>{{ item.data.Breakers }}</td>
                         <td>{{ item.data.Priority }}</td>
-                        <td>{{ item.data.DueDate }}</td>
+                        <td>{{ item.data.Date }}</td>
                         <td>
                             <select class="form-control" (change)="selectTech(item.id, $event.target.value)">
                                 <option> --- Select Tech ---</option>
