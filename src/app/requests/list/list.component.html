@@ -16,9 +16,9 @@
                     <tr>
                         <th scope="col">Batch ID</th>
                         <th scope="col">Catalog</th>
-                        <th scope="col">Requestor<span class="sort-icons"><i class="fas fa-sort" (click)="Sort('Requestor')"></i></span></th>
+                        <th scope="col">Purpose<span class="sort-icons"><i class="fas fa-sort" (click)="Sort('Requestor')"></i></span></th>
                         <th scope="col">Qty</th>
-                        <th scope="col">Priority<span class="sort-icons"><i class="fas fa-sort" (ngModel) = "Order" (click) = "Sort('Priority')"></i></span></th>
+                        <th scope="col">Priority<span  class="sort-icons"><i class="fas fa-sort"  (click) = "Sort('Priority')"></i></span></th>
                         <th scope="col">Date</th>
                         <th scope="col">Status<span class="sort-icons"><i class="fas fa-sort" (click) = "Sort('Status')"></i></span></th>
                         <th scope="col">Details</th>
@@ -28,7 +28,7 @@
                     <tr *ngFor="let item of batch | filter: searchFilter">
                         <th scope="row">{{ item.data.BatchID }}</th>
                         <td>{{ item.data.Catalog }}</td>
-                        <td>{{ item.data.user }}</td>
+                        <td>{{ item.data.Purpose }}</td>
                         <td>{{ item.data.Breakers }}</td>
                         <td *ngIf="item.data.Priority == 1">Baja</td>
                         <td *ngIf="item.data.Priority == 2">Media</td>

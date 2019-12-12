@@ -5,7 +5,7 @@
             <div class="card-counter primary">
                 <i class="fa fa-database"></i>
                 <span class="count-numbers">Request Pendientes</span>
-                <span class="count-name">21</span>
+                <span class="count-name">{{PendingRequests.length}}</span>
             </div>
         </div>
 
@@ -13,7 +13,7 @@
             <div class="card-counter danger">
                 <i class="fa fa-cogs"></i>
                 <span class="count-numbers">Request en Progreso</span>
-                <span class="count-name">04</span>
+                <span class="count-name">{{InProgressRequests.length}}</span>
             </div>
         </div>
 
@@ -21,7 +21,7 @@
             <div class="card-counter success">
                 <i class="fa fa-check-circle"></i>
                 <span class="count-numbers">Request Completados</span>
-                <span class="count-name">12</span>
+                <span class="count-name">{{DoneRequests.length}}</span>
             </div>
         </div>
 
@@ -70,58 +70,27 @@
                 <th scope="col ">Tests</th>
                 <th scope="col ">Proposito</th>
                 <th scope="col ">Prioridad</th>
-                <th scope="col ">Especificaciones</th>
                 <th scope="col ">Asignados</th>
                 <th scope="col ">Status</th>
-                <th scope="col ">Action</th>
             </tr>
         </thead>
         <tbody>
-            <tr>
-                <th scope="row ">1</th>
-                <td>Jacob</td>
-                <td>Thornton</td>
-                <td>@fat</td>
-                <td>Jacob</td>
-                <td>Thornton</td>
-                <td>@fat</td>
-                <td>Jacob</td>
-                <td>Jacob</td>
-                <td>Thornton</td>
-                <td>
+            <tr *ngFor = "let item of lastFive, let i = index">
+                <th scope="row ">{{i + 1}}</th>
+                <td>{{item.BatchID}}</td>
+                <td>{{item.user}}</td>
+                <td>{{item.Date}}</td>
+                <td>{{item.TestTypes}}</td>
+                <td>{{item.Purpose}}</td>
+                <td>{{item.Priority}}</td>
+                <td>{{item.tech}}</td>
+                <td>{{item.Status}}</td>
+               <!---- <td>
                     <button class="btn btn-info btn-sm"><i class="fa fa-eye"></i></button>
                 </td>
-            </tr>
-            <tr>
-                <th scope="row ">2</th>
-                <td>Jacob</td>
-                <td>Thornton</td>
-                <td>@fat</td>
-                <td>Jacob</td>
-                <td>Thornton</td>
-                <td>@fat</td>
-                <td>Jacob</td>
-                <td>Jacob</td>
-                <td>Thornton</td>
-                <td>
-                    <button class="btn btn-info btn-sm"><i class="fa fa-eye"></i></button>
-                </td>
-            </tr>
-            <tr>
-                <th scope="row ">3</th>
-                <td>Jacob</td>
-                <td>Thornton</td>
-                <td>@fat</td>
-                <td>Jacob</td>
-                <td>Thornton</td>
-                <td>@fat</td>
-                <td>Jacob</td>
-                <td>Jacob</td>
-                <td>Thornton</td>
-                <td>
-                    <button class="btn btn-info btn-sm"><i class="fa fa-eye"></i></button>
-                </td>
+                --->
             </tr>
         </tbody>
     </table>
 </div>
+

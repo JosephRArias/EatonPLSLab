@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { UsersModel } from '../models/users.model';
 import { BatchModel } from '../models/batch.model';
 import { AngularFirestore } from '@angular/fire/firestore';
+import { CatalogsModel } from '../models/catalogs.model';
 
 
 @Injectable({
@@ -41,6 +42,7 @@ export class FirebaseService {
         data.push(user);    
       }
     });
+    console.log(data);
     return data;
   }
 
@@ -73,16 +75,23 @@ export class FirebaseService {
     return this.db.collection('batch').snapshotChanges();
   }
 
+  getLastBatch(){
+    return this.db.collection('batch', ref => ref.limit(5)).snapshotChanges();
+  }
+  getBatchesWhereStatusDone(){
+    //var batchRef = this.db.firestore.
+  }
+
   getBatchbyId(id:string){
-    this.db.collection('batch').doc(id).snapshotChanges();
+    return this.db.collection('batch').doc(id).snapshotChanges();
   }
 
   updateBatch(id:string, data:BatchModel){
     return this.db.collection('batch').doc(id).set(data);
   }
 
-  getBatchbyStatus(status:number){
-    return this.db.collection('batch', ref => ref.where('status','==' , status)).snapshotChanges();
+  getBatchbyStatus(status: string){
+    return this.db.collection('batch', ref => ref.where('Status', '==' , status)).snapshotChanges();
   }
 
   asignTech(id:string, techTxt:string){
@@ -107,6 +116,31 @@ export class FirebaseService {
         if(user.type == 1) data.push(user);    
       }
     });
+    return data;
+  }
+
+
+  getAllLines(){
+    let data = [];
+    this.http.get(`${this.url}/lines.json`).subscribe(res=>{
+      for(const key in res){
+        data.push(key);
+      }
+    })
+    return data;
+  }
+
+  getCatalogsByLine(Line: string){
+    let data : CatalogsModel[] = [];
+    this.http.get(`${this.url}/lines/${Line}.json`).subscribe(res=>{
+      for(const key in res){
+        let catalog: CatalogsModel;
+          catalog = res[key];
+          data.push(catalog);
+          console.log(res[key]);
+          console.log(data);
+      }
+    })
     return data;
   }
 

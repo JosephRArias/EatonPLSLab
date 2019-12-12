@@ -19,7 +19,7 @@ export class ListComponent implements OnInit {
   userType:any;
   techUsers:any;
   public searchFilter: string;
-  public Order = 'ASC';
+  public desc: false;
 
   constructor(private firebase:FirebaseService) {
     this.userProfile = localStorage.getItem('userDetail').split(',');
@@ -32,6 +32,7 @@ export class ListComponent implements OnInit {
   supervisor() {
     //get tech userList
     this.techUsers = this.firebase.getTechList();
+    console.log(this.techUsers);
 
     this.firebase.getAllBatch().subscribe((snapshot) => {
       this.batch = [];
@@ -68,6 +69,22 @@ export class ListComponent implements OnInit {
 
   details(id:string){
     console.log(id);
+    this.firebase.getBatchbyId(id).subscribe((snapshot)=>{
+       const data = snapshot.payload.data();
+      console.log(data['BatchID']);
+      swal.fire({
+        title: `<strong>Batch ID: ${data['BatchID']} </strong>`,
+        html: `<strong>L&iacute;nea</strong>: ${data['Line']} <br>
+              <strong>Cat&aacute;logo</strong>: ${data['Catalog']} <br>
+              <strong>Prop&oacute;sito</strong>: ${data['Purpose']} <br>
+              <strong>Prioridad</strong>: ${data['Priority']} <br>
+              <strong>TestTypes</strong>: ${data['TestTypes']} <br> 
+              <strong>Fecha de Registro</strong>: ${data['Date']}<br>
+              <strong>Status</strong>: ${data['Status']} <br>
+        `,
+        type: "info"
+      });
+    });
   }
   getBatchesByID(batchID: string){
      return this.batch.filter(foundBatch=>foundBatch.BatchID == batchID);
@@ -89,21 +106,15 @@ export class ListComponent implements OnInit {
     });
   }
   SortByPriority(c1: any, c2: any){
-    console.log(this.Order);
-    if(this.Order === 'ASC'){
-      if(c1.data.Priority > c2.data.Priority){
-        this.Order = 'DESC';
+      if(c1.data.Priority < c2.data.Priority){
         return 1;
       }
       else if(c1.data.Priority === c2.data.Priority){
-        this.Order = 'DESC';
         return 0;
       }
       else {
-        this.Order = 'DESC';
         return -1;
       }
-    }
 
   }
   SortByStatus(c1: any, c2: any){
@@ -118,5 +129,6 @@ export class ListComponent implements OnInit {
     }
 
   }
+
 
 }

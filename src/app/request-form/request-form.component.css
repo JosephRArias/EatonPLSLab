@@ -75,4 +75,12 @@ span.input-group-addon i {
 }
 #text-input{
     margin-left: 5px;
+    width: 50px;
+    top: -7px;
+}
+
+.disp span {
+    margin-left: 23px;
+    top: -7px;
+    position: relative;
 }

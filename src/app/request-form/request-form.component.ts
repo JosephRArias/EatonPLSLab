@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, FormArray } from '@angular/forms';
 import { BatchModel } from '../models/batch.model';
 import {Observable} from 'rxjs';
-import {map, startWith} from 'rxjs/operators';
+import {map, startWith, filter} from 'rxjs/operators';
 import { FirebaseService } from '../services/firebase.service';
 import { Router } from '@angular/router';
 import {DatePipe} from '@angular/common';
@@ -16,15 +16,15 @@ import {DatePipe} from '@angular/common';
 export class RequestFormComponent implements OnInit {
 
   Purposes = ['VN', 'Deviation', 'PPQI', 'PPAP', 'UL', 'MPD', 'MSA', 'Calibration Band', 'Production','Cost Saving'];
-  Catalogs = ['One', 'Two', 'Three'];
-  Lines = ['Smart Breakers', 'CHF2P'];
+  Catalogs : any[] = [];
+  Lines: string[] = this.firebase.getAllLines();
   LineSelected : string;
+  Line: string;
   filteredCatalogs: Observable<string[]>;
   filteredLines: Observable<string[]>;
   Username: any;
   TestTypes: Array<String> = ['Thermal 135%', 'Thermal 200%', 'Thermal HotBox', 'Endurance',
   'Magnetica', 'Electronica', 'MV Drop', 'Temperature Rise', 'Calibracion', 'Impedancia', 'Otra (Especifique en comentarios)'];
-  
   formArray: FormArray;
 
   constructor(public requestForm: BatchModel, private firebase: FirebaseService, private router: Router,private datePipe: DatePipe) {
@@ -35,16 +35,15 @@ export class RequestFormComponent implements OnInit {
     this.requestForm.Batch.controls['Date'].setValue(this.datePipe.transform(new Date(),"yyyy-MM-dd"));
     this.requestForm.Batch.controls['Date'].patchValue(this.datePipe.transform(new Date(),"yyyy-MM-dd"));
     this.Username = localStorage.getItem('userDetail').split(',');
-    
     this.filteredCatalogs = this.requestForm.Batch.controls['Catalog'].valueChanges
       .pipe(
         startWith(''),
         map(value => this.CatalogsFilter(value))
       );
-          this.filteredLines = this.requestForm.Batch.controls['Line'].valueChanges
+    this.filteredLines = this.requestForm.Batch.controls['Line'].valueChanges
     .pipe(
       startWith(''),
-      map(value => this.LinesFilter(value))
+      map(value => this.LinesFilter(value))    
     );
   }
   private CatalogsFilter(value: string): string[] {
@@ -57,8 +56,8 @@ export class RequestFormComponent implements OnInit {
   }
 
   onSubmit() {
-    this.requestForm.Batch.controls['Catalog'].setValue(this.requestForm.Batch.controls['Line'].value);
-    this.requestForm.Batch.controls['Catalog'].patchValue(this.requestForm.Batch.controls['Line'].value);
+    /*this.requestForm.Batch.controls['Catalog'].setValue(this.requestForm.Batch.controls['Line'].value);
+    this.requestForm.Batch.controls['Catalog'].patchValue(this.requestForm.Batch.controls['Line'].value);*/
     let data = this.requestForm.Batch.value;
     
     this.firebase.addNewBatch(data)
@@ -86,6 +85,13 @@ export class RequestFormComponent implements OnInit {
         }
         i++;
       });
+    }
+  }
+  onLineChange(){
+    if(this.requestForm.Batch.controls['Line'].value){
+      this.Catalogs = this.firebase.getCatalogsByLine(this.requestForm.Batch.controls['Line'].value);
+      console.log(this.Catalogs);
+      console.log(this.Lines);
     }
   }
 }

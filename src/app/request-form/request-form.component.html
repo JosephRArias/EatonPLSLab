@@ -14,7 +14,7 @@
                       'is-invalid':
                         requestForm.Batch.get('Line').touched &&
                         requestForm.Batch.get('Line').invalid
-                    }">
+                    }"(focusout) = "onLineChange()">
                         <div class="invalid-feedback">
                             Debe seleccionar una l&iacute;nea
                         </div>
@@ -71,8 +71,8 @@
                         <span class="input-group-addon">
                             <i class="fas fa-plus"></i>
                         </span>
-                        <input type="number" placeholder="Inserte la cantidad de Breakers" class="form-control" id="quantity"
-                            formControlName="Breakers" [ngClass]="
+                        <input type="number" placeholder="Inserte la cantidad de Breakers" class="form-control"
+                            id="quantity" formControlName="Breakers" [ngClass]="
               {
                 'is-invalid':
                   requestForm.Batch.get('Breakers').touched &&
@@ -100,7 +100,7 @@
                             requestForm.Batch.get('Purpose').touched &&
                             requestForm.Batch.get('Purpose').value === ''
                         }
-                      " >
+                      ">
                             <option value='' default selected>Seleccionar Prop&oacute;sito</option>
                             <option *ngFor="let purpose of Purposes">{{ purpose }}</option>
                         </select>
@@ -114,21 +114,20 @@
                             <i class="far fa-sticky-note"></i>
                         </span></label>
                     <div class="input-group">
-                        <div class="form-check-inline form-check">
-                            <label for="radio1" class="form-check-label">
-                                <input type="radio" id="radio1" #send name="radios" value="option1"
-                                    class="form-check-input">Enviar a:
+                        <div class="form-check">
+                            <label for="radio1" class="form-check-label disp">
+                                <input type="radio" id="radio1" #send name="Disposition" value="Send to"
+                                    class="form-check-input" formControlName="Disposition"><span>Enviar a:</span> 
                             </label>
                             <br>
+                            <label for="radio2" class="form-check-label disp">
+                                <input type="radio" id="radio2" name="Disposition" value="Scrap" class="form-check-input"
+                                    formControlName="Disposition"><span>Scrap</span>
+                            </label>
                         </div>
                         <input type="text" id="text-input" name="text-input" *ngIf="send.checked"
-                        placeholder="Ubicación / Responsable" class="form-control">
-                    </div>
-                    <div class="input-group form-check-inline form-check">
-                        <label for="radio2" class="form-check-label">
-                            <input type="radio" id="radio2" name="radio2" value="option2"
-                                class="form-check-input">Scrap
-                        </label>
+                            placeholder="Ubicación / Responsable" class="form-control">
+
                     </div>
                 </div>
 
@@ -143,8 +142,8 @@
                                 formControlName="Priority" />Baja
                         </label>
                         <label for="inline-radio2" class="form-check-label " style="padding-right: 10px;">
-                            <input type="radio" id="inline-radio2" name="Priority" value="2"
-                                class="form-check-input" formControlName="Priority" />Media
+                            <input type="radio" id="inline-radio2" name="Priority" value="2" class="form-check-input"
+                                formControlName="Priority" />Media
                         </label>
                         <label for="inline-radio3" class="form-check-label " style="padding-right: 10px;">
                             <input type="radio" id="inline-radio3" name="Priority" value="3" class="form-check-input"
@@ -152,8 +151,8 @@
                         </label>
 
                         <label for="inline-radio4" class="form-check-label ">
-                            <input type="radio" id="inline-radio4" name="Priority" value="4"
-                                class="form-check-input" formControlName="Priority" />Urgente
+                            <input type="radio" id="inline-radio4" name="Priority" value="4" class="form-check-input"
+                                formControlName="Priority" />Urgente
                         </label>
                     </div>
                     <div class="form-group">

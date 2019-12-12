@@ -14,8 +14,13 @@ export class HomeComponent implements OnInit {
   userType: string;
   date : string;
   dateTxt: string;
+  DoneRequests: any[] = [];
+  PendingRequests: any[] = []; 
+  InProgressRequests: any[] = [];
 
   actions : any[];
+
+  lastFive: any[] = [];
 
   constructor(private router:Router, private appService:AppService, private firebase:FirebaseService) { 
     this.userProfile = localStorage.getItem('userDetail').split(',');
@@ -23,10 +28,32 @@ export class HomeComponent implements OnInit {
 
   ngOnInit() {
     this.userType = localStorage.getItem('accessReference');
+    this.firebase.getBatchbyStatus('Done').subscribe((res: any)=>{
+      return res.map((item:any)=>{
+        this.DoneRequests.push(item.payload.doc.data())
+      });
+    });
+    this.firebase.getBatchbyStatus('Tech Assign').subscribe((res: any)=>{
+      return res.map((item:any) => {
+        this.PendingRequests.push(item.payload.doc.data);
+      });
+    });
+    this.firebase.getBatchbyStatus('In Progress').subscribe((res:any)=>{
+      return res.map((item:any)=>{
+        this.InProgressRequests.push(item.payload.doc.data);
+      });
+    });
     //Start Clock
     setInterval(() => {
       this.fechaHora();
     }, 1000);
+
+    this.firebase.getLastBatch().subscribe((res:any) => {
+      return res.map( (item:any) => {
+        this.lastFive.push(item.payload.doc.data());
+      });
+    });
+    
 
 
     this.actions = [
