@@ -38,6 +38,11 @@ export class HomeComponent implements OnInit {
         this.PendingRequests.push(item.payload.doc.data);
       });
     });
+    this.firebase.getBatchbyStatus('New').subscribe((res: any)=>{
+      return res.map((item: any)=>{
+        this.PendingRequests.push(item.payload.doc.data());
+      })
+    })
     this.firebase.getBatchbyStatus('In Progress').subscribe((res:any)=>{
       return res.map((item:any)=>{
         this.InProgressRequests.push(item.payload.doc.data);
@@ -53,7 +58,6 @@ export class HomeComponent implements OnInit {
         this.lastFive.push(item.payload.doc.data());
       });
     });
-    
 
 
     this.actions = [

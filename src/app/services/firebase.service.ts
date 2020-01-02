@@ -76,7 +76,7 @@ export class FirebaseService {
   }
 
   getLastBatch(){
-    return this.db.collection('batch', ref => ref.limit(5)).snapshotChanges();
+    return this.db.collection('batch', ref => ref.limit(5).orderBy("_ts", "desc")).snapshotChanges();
   }
   getBatchesWhereStatusDone(){
     //var batchRef = this.db.firestore.

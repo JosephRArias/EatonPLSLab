@@ -81,7 +81,7 @@ export class MsalService {
         const expiresAt = (authResult.expiresIn * 1000) + Date.now();
         this._expiresAt = expiresAt;
 
-        if(this._userEmail.includes("eaton.com") || this._userEmail.includes("gratereaux") || this._userEmail.includes("joseam")){
+        if(this._userEmail.includes("eaton.com") || this._userEmail.includes("gratereaux") || this._userEmail.includes("joseam") || this._userEmail.includes("1070229")){
             //Set local Storage
             localStorage.setItem('localLoginToken', this._idToken);
 

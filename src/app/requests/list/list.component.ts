@@ -12,6 +12,7 @@ import { BatchModel } from 'src/app/models/batch.model';
 export class ListComponent implements OnInit {
 
   batch :any[] = [];
+  statusSort = false;
   batch2:any[] = [];
   completed: any[] = [];
   data: any[] = [];
@@ -20,6 +21,7 @@ export class ListComponent implements OnInit {
   techUsers:any;
   public searchFilter: string;
   public desc: false;
+  prioritySort = false;
 
   constructor(private firebase:FirebaseService) {
     this.userProfile = localStorage.getItem('userDetail').split(',');
@@ -28,11 +30,12 @@ export class ListComponent implements OnInit {
 
   ngOnInit() {
     this.supervisor();
+    console.log(this.userProfile);
+    console.log(this.userType);
   }
   supervisor() {
     //get tech userList
     this.techUsers = this.firebase.getTechList();
-    console.log(this.techUsers);
 
     this.firebase.getAllBatch().subscribe((snapshot) => {
       this.batch = [];
@@ -47,8 +50,7 @@ export class ListComponent implements OnInit {
             id: data.payload.doc.id,
             data: dataCont
           });
-          console.log(this.batch);
-
+          this.data = this.batch;
           if(!dataCont.tech){  
             this.batch2.push({
               id: data.payload.doc.id,
@@ -68,10 +70,11 @@ export class ListComponent implements OnInit {
   }
 
   details(id:string){
-    console.log(id);
     this.firebase.getBatchbyId(id).subscribe((snapshot)=>{
        const data = snapshot.payload.data();
-      console.log(data['BatchID']);
+       if(data['Comment']==null){
+         data['Comment'] = '';
+       }
       swal.fire({
         title: `<strong>Batch ID: ${data['BatchID']} </strong>`,
         html: `<strong>L&iacute;nea</strong>: ${data['Line']} <br>
@@ -81,8 +84,10 @@ export class ListComponent implements OnInit {
               <strong>TestTypes</strong>: ${data['TestTypes']} <br> 
               <strong>Fecha de Registro</strong>: ${data['Date']}<br>
               <strong>Status</strong>: ${data['Status']} <br>
+              <strong>Comentario</strong>: ${data['Comment']} <br>
+              <strong>Disposici&oacute;n</strong>: ${data['Disposition']}
         `,
-        type: "info"
+        type: "info"  
       });
     });
   }
@@ -90,11 +95,20 @@ export class ListComponent implements OnInit {
      return this.batch.filter(foundBatch=>foundBatch.BatchID == batchID);
   }
   Sort(Criteria: string){
-    if(Criteria === 'Priority'){
-      this.data = this.batch.sort(this.SortByPriority);
+    if(Criteria === 'Priority' && !this.prioritySort){
+      this.data.sort(this.SortByPriority);
+      this.prioritySort = true;
+    }else if(Criteria === 'Priority' && this.prioritySort){
+      this.data = [...this.batch].map(item=>({...item}));
+      this.prioritySort = false;
     }
-    else if(Criteria === 'Status'){
-      this.data = this.batch.sort(this.SortByStatus);
+    else if(Criteria === 'Status' && !this.statusSort){
+      this.data.sort(this.SortByStatus);
+      this.statusSort = true;
+      return;
+    }else{
+      this.data = [...this.batch].map(item=>({...item}));
+      this.statusSort = false;
     }
   }
 

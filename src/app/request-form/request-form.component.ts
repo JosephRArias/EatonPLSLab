@@ -22,6 +22,7 @@ export class RequestFormComponent implements OnInit {
   Line: string;
   filteredCatalogs: Observable<string[]>;
   filteredLines: Observable<string[]>;
+  public Disposal: string;
   Username: any;
   TestTypes: Array<String> = ['Thermal 135%', 'Thermal 200%', 'Thermal HotBox', 'Endurance',
   'Magnetica', 'Electronica', 'MV Drop', 'Temperature Rise', 'Calibracion', 'Impedancia', 'Otra (Especifique en comentarios)'];
@@ -56,9 +57,15 @@ export class RequestFormComponent implements OnInit {
   }
 
   onSubmit() {
-    /*this.requestForm.Batch.controls['Catalog'].setValue(this.requestForm.Batch.controls['Line'].value);
-    this.requestForm.Batch.controls['Catalog'].patchValue(this.requestForm.Batch.controls['Line'].value);*/
+    var hoy = new Date();
+    this.requestForm.Batch.controls['BatchID'].setValue(this.requestForm.Batch.controls['Catalog'].value + '-' + hoy.getDate() + (hoy.getMonth() + 1) + hoy.getFullYear().toString().substr(-2));
+    if(this.Disposal != null){
+      this.requestForm.Batch.controls['Disposition'].setValue(this.requestForm.Batch.controls['Disposition'].value + ' ' + this.Disposal); 
+      console.log(this.requestForm.Batch.controls['Disposition'].value);
+    }
+    
     let data = this.requestForm.Batch.value;
+    console.log(this.Disposal);
     
     this.firebase.addNewBatch(data)
     .then(res => {
@@ -90,8 +97,6 @@ export class RequestFormComponent implements OnInit {
   onLineChange(){
     if(this.requestForm.Batch.controls['Line'].value){
       this.Catalogs = this.firebase.getCatalogsByLine(this.requestForm.Batch.controls['Line'].value);
-      console.log(this.Catalogs);
-      console.log(this.Lines);
     }
   }
 }

@@ -4,16 +4,16 @@
         <div class="col-md-3">
             <div class="card-counter primary">
                 <i class="fa fa-database"></i>
-                <span class="count-numbers">Request Pendientes</span>
-                <span class="count-name">{{PendingRequests.length}}</span>
+                <span class="count-numbers">Request En Progreso</span>
+                <span class="count-name">{{InProgressRequests.length}}</span>
             </div>
         </div>
 
         <div class="col-md-3">
             <div class="card-counter danger">
                 <i class="fa fa-cogs"></i>
-                <span class="count-numbers">Request en Progreso</span>
-                <span class="count-name">{{InProgressRequests.length}}</span>
+                <span class="count-numbers">Request Nuevos y Asignados</span>
+                <span class="count-name">{{PendingRequests.length}}</span>
             </div>
         </div>
 
@@ -82,7 +82,10 @@
                 <td>{{item.Date}}</td>
                 <td>{{item.TestTypes}}</td>
                 <td>{{item.Purpose}}</td>
-                <td>{{item.Priority}}</td>
+                <td *ngIf = "item.Priority == 1">Baja</td>
+                <td *ngIf = "item.Priority == 2">Media</td>
+                <td *ngIf = "item.Priority == 3">Alta</td>
+                <td *ngIf = "item.Priority == 4">Urgente</td>
                 <td>{{item.tech}}</td>
                 <td>{{item.Status}}</td>
                <!---- <td>

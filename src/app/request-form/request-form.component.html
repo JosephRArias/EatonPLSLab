@@ -9,7 +9,7 @@
                         <span class="input-group-addon">
                             <i class="fas fa-folder-open"></i>
                         </span>
-                        <input type="text" placeholder="Seleccionar o Buscar Catalogo" #line class="form-control"
+                        <input type="text" placeholder="Seleccionar o Buscar L&iacute;nea" #line class="form-control"
                             id="line" formControlName="Line" [matAutocomplete]="autoLine" [ngClass]="{
                       'is-invalid':
                         requestForm.Batch.get('Line').touched &&
@@ -125,8 +125,8 @@
                                     formControlName="Disposition"><span>Scrap</span>
                             </label>
                         </div>
-                        <input type="text" id="text-input" name="text-input" *ngIf="send.checked"
-                            placeholder="Ubicación / Responsable" class="form-control">
+                        <input type="text" id="text-input" name="text-input" *ngIf="send.checked" #disposal
+                            placeholder="Ubicación / Responsable" class="form-control" (input) = "Disposal = $event.target.value">
 
                     </div>
                 </div>
