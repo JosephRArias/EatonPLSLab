@@ -1,0 +1,19 @@
+.form-control{
+    padding-bottom: 10px;
+    margin-bottom: 10px;
+}
+.table{
+    background-color: #ece9e9;
+    border:1px solid black;
+}
+.col-sm-5{
+    padding-top:48px;
+}
+#header{
+    padding-bottom: 50px;
+}
+.sort-icons{
+    cursor: pointer;
+    padding-left: 5px;
+
+}
