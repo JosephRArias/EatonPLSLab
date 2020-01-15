@@ -62,12 +62,11 @@ export class HomeComponent implements OnInit {
 
     this.actions = [
         {'name' : 'Nuevo Request', 'color' : 'green', 'icon' : 'cloud', 'action' : 'requestForm', 'user' : '5,4,3'},
-        {'name' : 'Mis Pendientes', 'color' : 'cyan', 'icon' : 'check', 'action' : 'pendientes', 'user' : '5,2'},
-        {'name' : 'Reporte Tecnico', 'color' : 'red', 'icon' : 'check', 'action' : 'tecnicos', 'user' : '1'},
-        {'name' : 'Accion 5', 'color' : 'orange', 'icon' : 'check', 'action' : '/form', 'user' : '1'},
-        {'name' : 'Accion 6', 'color' : 'green', 'icon' : 'check', 'action' : '/form', 'user' : '1'},
-        {'name' : 'Accion 7', 'color' : 'green', 'icon' : 'check', 'action' : '/form', 'user' : '2'},
-        {'name' : 'Accion 8', 'color' : 'green', 'icon' : 'check', 'action' : '/form', 'user' : '1'},
+        {'name' : 'Mis Pendientes', 'color' : 'cyan', 'icon' : 'check', 'action' : 'pendientes', 'user' : '1'},
+        {'name' : 'Reporte Tecnico', 'color' : 'red', 'icon' : 'check', 'action' : 'tecnicos', 'user' : '3'},
+        {'name': 'Lista de Requests', 'color': 'yellow', 'icon': 'check', 'action': 'TechRequestList', 'user': '5'},
+        {'name': 'Lista de Requests', 'color': 'yellow', 'icon': 'check', 'action': 'SupervisorRequestList', 'user': '5'},
+        {'name': 'Lista de Requests', 'color': 'yellow', 'icon': 'check', 'action': 'EngineerRequestList', 'user': '5'}
     ];
   }
 

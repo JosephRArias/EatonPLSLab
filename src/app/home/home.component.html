@@ -38,13 +38,6 @@
 
     <div class="mt-2 mb-2 icon-btn">
 
-        <button class="btn-full yellow" (click)="gotoPage('requestList')">
-            <span class="btn-gradient ">
-                <i class="fa fa-check"></i>
-            </span>
-            <span class="btn-text ">Lista de Request</span>
-        </button>
-
         <button class="btn-full {{item.color}}" *ngFor="let item of actions" [hidden]="!item.user.includes(userType)" (click)="gotoPage(item.action)">
             <span class="btn-gradient ">
                 <i class="fa fa-{{item.icon}}"></i>

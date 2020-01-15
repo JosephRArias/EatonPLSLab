@@ -36,16 +36,6 @@ export class RequestFormComponent implements OnInit {
     this.requestForm.Batch.controls['Date'].setValue(this.datePipe.transform(new Date(),"yyyy-MM-dd"));
     this.requestForm.Batch.controls['Date'].patchValue(this.datePipe.transform(new Date(),"yyyy-MM-dd"));
     this.Username = localStorage.getItem('userDetail').split(',');
-    this.filteredCatalogs = this.requestForm.Batch.controls['Catalog'].valueChanges
-      .pipe(
-        startWith(''),
-        map(value => this.CatalogsFilter(value))
-      );
-    this.filteredLines = this.requestForm.Batch.controls['Line'].valueChanges
-    .pipe(
-      startWith(''),
-      map(value => this.LinesFilter(value))    
-    );
   }
   private CatalogsFilter(value: string): string[] {
     const filterValue = value.toLowerCase();
@@ -65,8 +55,6 @@ export class RequestFormComponent implements OnInit {
     }
     
     let data = this.requestForm.Batch.value;
-    console.log(this.Disposal);
-    
     this.firebase.addNewBatch(data)
     .then(res => {
       this.requestForm.Batch.reset();
@@ -95,6 +83,16 @@ export class RequestFormComponent implements OnInit {
     }
   }
   onLineChange(){
+    this.filteredLines = this.requestForm.Batch.controls['Line'].valueChanges
+    .pipe(
+      startWith(''),
+      map(value => this.LinesFilter(value))    
+    );
+    this.filteredCatalogs = this.requestForm.Batch.controls['Catalog'].valueChanges
+      .pipe(
+        startWith(''),
+        map(value => this.CatalogsFilter(value))
+      );  
     if(this.requestForm.Batch.controls['Line'].value){
       this.Catalogs = this.firebase.getCatalogsByLine(this.requestForm.Batch.controls['Line'].value);
     }

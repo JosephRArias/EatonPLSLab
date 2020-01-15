@@ -56,6 +56,9 @@ import { ListComponent } from './requests/list/list.component';
 import { BatchModel } from './models/batch.model';
 import { FilterPipe } from './pipes/filter.pipe';
 import { DatePipe } from '@angular/common';
+import { TechWorkloadComponent } from './tech/tech-workload/tech-workload/tech-workload.component';
+import {TechRequestListComponent} from './tech/tech-request-list/tech-request-list/tech-request-list.component';
+import { EngineerRequestListComponent } from './engineer/engineer-request-list/engineer-request-list.component'
 
 @NgModule({
   imports: [BrowserModule, FormsModule, ReactiveFormsModule, BrowserAnimationsModule,
@@ -81,7 +84,7 @@ import { DatePipe } from '@angular/common';
     
      RouterModule.forRoot(appRoutes)],
 
-  declarations: [AppComponent, LoginComponent, HomeComponent, RegistrationComponent, ForgotPasswordComponent, TareasComponent, AdminMainComponent, NavMenuComponent, ProjectsComponent, RequestFormComponent, ListComponent, FilterPipe],
+  declarations: [AppComponent, LoginComponent, HomeComponent, RegistrationComponent, ForgotPasswordComponent, TareasComponent, AdminMainComponent, NavMenuComponent, ProjectsComponent, RequestFormComponent, ListComponent, FilterPipe, TechWorkloadComponent, TechRequestListComponent, EngineerRequestListComponent],
   bootstrap: [AppComponent],
   providers: [MatIconRegistry, AppService, MsalService, AuthGuard, ModeratorGuard, UserGuard, AdminGuard, BatchModel, {provide: APP_BASE_HREF, useValue : '/'}]
 })

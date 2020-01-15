@@ -29,9 +29,9 @@ export class ListComponent implements OnInit {
    }
 
   ngOnInit() {
-    this.supervisor();
-    console.log(this.userProfile);
-    console.log(this.userType);
+    if(this.batch2.length == 0 && this.batch.length == 0){
+      this.supervisor();
+    }
   }
   supervisor() {
     //get tech userList
@@ -44,7 +44,6 @@ export class ListComponent implements OnInit {
       snapshot.forEach((data:any)=>{
 
         let dataCont = data.payload.doc.data();
-
         if(dataCont.Status != "Done"){
           this.batch.push({
             id: data.payload.doc.id,
@@ -113,7 +112,7 @@ export class ListComponent implements OnInit {
   }
 
   selectTech(id:string, tech:string){
-    this.firebase.asignTech(id, tech).then(res => {
+    this.firebase.assignTech(id, tech).then(res => {
       swal.fire('Batch Updated', 'Tech Assigned...', 'success');
     }).catch(res => {
       swal.fire('Something Wrong', 'Try Again... ' + res, 'error');

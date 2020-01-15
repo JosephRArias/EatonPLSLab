@@ -85,7 +85,12 @@ export class FirebaseService {
   getBatchbyId(id:string){
     return this.db.collection('batch').doc(id).snapshotChanges();
   }
-
+  getBatchbyTech(tech: string){
+    return this.db.collection('batch', ref => ref.where('tech', '==', tech)).snapshotChanges();
+  }
+  getBatchbyUser(user: string){
+    return this.db.collection('batch', ref => ref.where('user', '==', user)).snapshotChanges();
+  }
   updateBatch(id:string, data:BatchModel){
     return this.db.collection('batch').doc(id).set(data);
   }
@@ -93,11 +98,22 @@ export class FirebaseService {
   getBatchbyStatus(status: string){
     return this.db.collection('batch', ref => ref.where('Status', '==' , status)).snapshotChanges();
   }
-
-  asignTech(id:string, techTxt:string){
+  updateComment(id:string, commentTxt: string){
+    let data ={
+      Comment: commentTxt
+    }
+    return this.db.collection('batch').doc(id).update(data);
+  }
+  assignTech(id:string, techTxt:string){
     let data = {
       tech : techTxt,
       Status : "Tech Assign"
+    }
+    return this.db.collection('batch').doc(id).update(data);
+  }
+  changeStatus(id:string, status: string){
+    let data = {
+      Status: status
     }
     return this.db.collection('batch').doc(id).update(data);
   }
