@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FirebaseService } from 'src/app/services/firebase.service';
 import swal from'sweetalert2';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-request-list',
@@ -12,8 +13,9 @@ export class TechRequestListComponent implements OnInit {
   progressBatch: any[] = [];
   userProfile:any;
   userType:any;
+  loaded: boolean = true;
 
-  constructor(private firebase:FirebaseService) { 
+  constructor(private firebase:FirebaseService, private router: Router) { 
     this.userProfile = localStorage.getItem('userDetail').split(',');
     this.userType = localStorage.getItem('accessReference');
   }
@@ -60,15 +62,7 @@ export class TechRequestListComponent implements OnInit {
               <strong>Comentario</strong>: ${data['Comment']} <br>
               <strong>Disposici&oacute;n</strong>: ${data['Disposition']}
         `,
-        type: "info",
-        cancelButtonText: 'Editar Comentario',
-        cancelButtonColor: '#3085d6',
-        showCancelButton: true
-      }).then((result)=>{
-        if(result.dismiss == swal.DismissReason.cancel){
-          this.changeComment(id);
-        }
-
+        type: "info"
       });
     });
   }
@@ -81,12 +75,13 @@ export class TechRequestListComponent implements OnInit {
   }
   changeComment(id:string){
     swal.fire({
-      title: 'Working',
+      title: 'Comentarios',
       type: 'info',
       text: 'Introduzca su comentario',
       input: 'textarea'
-    }).then((result)=>{
-      this.firebase.updateComment(id,result.value);
+    }).then(async (result)=>{
+      await this.firebase.updateComment(id,result.value);
+      window.location.reload();
     });
   }
 }

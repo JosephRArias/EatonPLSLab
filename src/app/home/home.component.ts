@@ -64,9 +64,9 @@ export class HomeComponent implements OnInit {
         {'name' : 'Nuevo Request', 'color' : 'green', 'icon' : 'cloud', 'action' : 'requestForm', 'user' : '5,4,3'},
         {'name' : 'Mis Pendientes', 'color' : 'cyan', 'icon' : 'check', 'action' : 'pendientes', 'user' : '1'},
         {'name' : 'Reporte Tecnico', 'color' : 'red', 'icon' : 'check', 'action' : 'tecnicos', 'user' : '3'},
-        {'name': 'Lista de Requests', 'color': 'yellow', 'icon': 'check', 'action': 'TechRequestList', 'user': '5'},
-        {'name': 'Lista de Requests', 'color': 'yellow', 'icon': 'check', 'action': 'SupervisorRequestList', 'user': '5'},
-        {'name': 'Lista de Requests', 'color': 'yellow', 'icon': 'check', 'action': 'EngineerRequestList', 'user': '5'}
+        {'name': 'Tecnico', 'color': 'yellow', 'icon': 'check', 'action': 'TechRequestList', 'user': '5'},
+        {'name': 'Supervisor', 'color': 'yellow', 'icon': 'check', 'action': 'SupervisorRequestList', 'user': '5'},
+        {'name': 'Ingeniero', 'color': 'yellow', 'icon': 'check', 'action': 'EngineerRequestList', 'user': '5'}
     ];
   }
 

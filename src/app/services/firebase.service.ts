@@ -98,11 +98,11 @@ export class FirebaseService {
   getBatchbyStatus(status: string){
     return this.db.collection('batch', ref => ref.where('Status', '==' , status)).snapshotChanges();
   }
-  updateComment(id:string, commentTxt: string){
+  async updateComment(id:string, commentTxt: string){
     let data ={
       Comment: commentTxt
     }
-    return this.db.collection('batch').doc(id).update(data);
+    this.db.collection('batch').doc(id).update(data);
   }
   assignTech(id:string, techTxt:string){
     let data = {
