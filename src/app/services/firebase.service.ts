@@ -42,7 +42,6 @@ export class FirebaseService {
         data.push(user);    
       }
     });
-    console.log(data);
     return data;
   }
 
@@ -98,7 +97,7 @@ export class FirebaseService {
   getBatchbyStatus(status: string){
     return this.db.collection('batch', ref => ref.where('Status', '==' , status)).snapshotChanges();
   }
-  async updateComment(id:string, commentTxt: string){
+   updateComment(id:string, commentTxt: string){
     let data ={
       Comment: commentTxt
     }
@@ -153,8 +152,6 @@ export class FirebaseService {
         let catalog: CatalogsModel;
           catalog = res[key];
           data.push(catalog);
-          console.log(res[key]);
-          console.log(data);
       }
     })
     return data;

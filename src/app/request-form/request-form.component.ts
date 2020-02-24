@@ -51,7 +51,6 @@ export class RequestFormComponent implements OnInit {
     this.requestForm.Batch.controls['BatchID'].setValue(this.requestForm.Batch.controls['Catalog'].value + '-' + hoy.getDate() + (hoy.getMonth() + 1) + hoy.getFullYear().toString().substr(-2));
     if(this.Disposal != null){
       this.requestForm.Batch.controls['Disposition'].setValue(this.requestForm.Batch.controls['Disposition'].value + ' ' + this.Disposal); 
-      console.log(this.requestForm.Batch.controls['Disposition'].value);
     }
     
     let data = this.requestForm.Batch.value;
@@ -88,13 +87,15 @@ export class RequestFormComponent implements OnInit {
       startWith(''),
       map(value => this.LinesFilter(value))    
     );
-    this.filteredCatalogs = this.requestForm.Batch.controls['Catalog'].valueChanges
-      .pipe(
-        startWith(''),
-        map(value => this.CatalogsFilter(value))
-      );  
     if(this.requestForm.Batch.controls['Line'].value){
       this.Catalogs = this.firebase.getCatalogsByLine(this.requestForm.Batch.controls['Line'].value);
     }
+  }
+  onCatalogChange(){
+    this.filteredCatalogs = this.requestForm.Batch.controls['Catalog'].valueChanges
+    .pipe(
+      startWith(''),
+      map(value => this.CatalogsFilter(value))
+    );  
   }
 }

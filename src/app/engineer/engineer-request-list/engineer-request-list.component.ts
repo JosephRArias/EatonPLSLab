@@ -22,7 +22,6 @@ export class EngineerRequestListComponent implements OnInit {
 
   ngOnInit() {
     if(this.loaded){
-      console.log('Llegue');
       this.getBatchesForEngineer();
     }
   }

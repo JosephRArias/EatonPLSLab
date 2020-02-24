@@ -72,7 +72,7 @@
                         <td>
                             <select class="form-control" (change)="selectTech(item.id, $event.target.value)">
                                 <option> --- Select Tech ---</option>
-                                <option value="{{tech.email}}" *ngFor="let tech of techUsers">{{tech.name}}</option>
+                                <option value="{{tech.name}}" *ngFor="let tech of techUsers">{{tech.name}}</option>
                             </select>
                         </td>
                     </tr>

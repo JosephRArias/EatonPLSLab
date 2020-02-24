@@ -20,7 +20,7 @@
                     <tr *ngFor="let item of batch">
                         <th scope="row">{{ item.data.BatchID }}</th>
                         <td>{{ item.data.Catalog }}</td>
-                        <td>{{item.data.tech}}</td>
+                        <td>{{item.data.Purpose}}</td>
                         <td>{{item.data.Quantity}}</td>
                         <td *ngIf="item.data.Priority == 1">Baja</td>
                         <td *ngIf="item.data.Priority == 2">Media</td>
