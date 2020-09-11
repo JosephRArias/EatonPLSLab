@@ -138,7 +138,7 @@ export class FirebaseService {
 
   getAllLines(){
     let data = [];
-    this.http.get(`${this.url}/lines.json`).subscribe(res=>{
+    this.http.get(`${this.url}`).subscribe(res=>{
       for(const key in res){
         data.push(key);
       }
@@ -148,7 +148,7 @@ export class FirebaseService {
 
   getCatalogsByLine(Line: string){
     let data : CatalogsModel[] = [];
-    this.http.get(`${this.url}/lines/${Line}.json`).subscribe(res=>{
+    this.http.get(`${this.url}/${Line}.json`).subscribe(res=>{
       for(const key in res){
         let catalog: CatalogsModel;
           catalog = res[key];

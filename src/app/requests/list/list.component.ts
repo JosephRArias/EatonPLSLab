@@ -50,6 +50,7 @@ export class ListComponent implements OnInit {
             data: dataCont
           });
           this.data = this.batch;
+          console.log(this.data);
           if(!dataCont.tech){  
             this.batch2.push({
               id: data.payload.doc.id,

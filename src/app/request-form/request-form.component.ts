@@ -36,6 +36,7 @@ export class RequestFormComponent implements OnInit {
     this.requestForm.Batch.controls['Date'].setValue(this.datePipe.transform(new Date(),"yyyy-MM-dd"));
     this.requestForm.Batch.controls['Date'].patchValue(this.datePipe.transform(new Date(),"yyyy-MM-dd"));
     this.Username = localStorage.getItem('userDetail').split(',');
+    console.log(this.Lines);
   }
   private CatalogsFilter(value: string): string[] {
     const filterValue = value.toLowerCase();
