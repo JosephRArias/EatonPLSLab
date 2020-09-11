@@ -61,6 +61,7 @@
                   requestForm.Batch.get('Catalog').touched &&
                   requestForm.Batch.get('Catalog').invalid
               }"
+              (focus) = "onCatalogChange()"
             />
             <div class="invalid-feedback">
               Debe seleccionar un cat&aacute;logo

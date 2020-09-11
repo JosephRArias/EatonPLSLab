@@ -79,9 +79,9 @@ export class TechRequestListComponent implements OnInit {
       type: 'info',
       text: 'Introduzca su comentario',
       input: 'textarea'
-    }).then(async (result)=>{
-      await this.firebase.updateComment(id,result.value);
-      window.location.reload();
+    }).then((result)=>{
+      this.progressBatch = [];
+      this.firebase.updateComment(id,result.value);
     });
   }
 }

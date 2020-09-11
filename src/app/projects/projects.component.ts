@@ -28,7 +28,6 @@ export class ProjectsComponent implements OnInit {
   }
 
   addProject(){
-    //console.log(this.form.value);
 
     const newProject = new Project(this.projects.length + 1, this.form.value.name, this.form.value.description);
 
