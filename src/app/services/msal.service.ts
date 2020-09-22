@@ -29,8 +29,7 @@ export class MsalService {
     msalConfig = {
         auth: {
             clientId : '43200d61-b402-49e7-9b55-819de95b3837',
-            authority: 'https://login.microsoftonline.com/4283295e-fa7d-4672-9613-bd4d799a11cf/',
-            redirectUrl: 'https://azureangulardeployment.azurewebsites.net/home'
+            authority: 'https://login.microsoftonline.com/4283295e-fa7d-4672-9613-bd4d799a11cf/'
         }
     };
 
