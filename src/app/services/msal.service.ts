@@ -20,7 +20,7 @@ export class MsalService {
         this._idToken = '';
         this._accessToken = '';
         this._expiresAt = 0;
-        this._tenantId = '';
+        this._tenantId = '4283295e-fa7d-4672-9613-bd4d799a11cf';
         this._uniqueId = '';
         this._userName = '';
         this._userEmail = '';
@@ -29,7 +29,8 @@ export class MsalService {
     msalConfig = {
         auth: {
             clientId : '43200d61-b402-49e7-9b55-819de95b3837',
-            authority: 'https://login.microsoftonline.com/4283295e-fa7d-4672-9613-bd4d799a11cf/'
+            authority: 'https://login.microsoftonline.com/4283295e-fa7d-4672-9613-bd4d799a11cf/',
+            redirectUrl: 'https://azureangulardeployment.azurewebsites.net'
         }
     };
 
