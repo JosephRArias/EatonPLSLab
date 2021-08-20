@@ -1,8 +1,0 @@
-<app-nav-menu *ngIf="isLogged"></app-nav-menu>
-
-<div class="alert alert-warning" role="alert" *ngIf="!isLogged && haveToken">
-    <b>Session Expired!</b> Need to Log-in Again! &nbsp; <button class="btn btn-outline-warning" routerLink="/login">Log-In</button>
-</div>
-
-
-<router-outlet></router-outlet>
